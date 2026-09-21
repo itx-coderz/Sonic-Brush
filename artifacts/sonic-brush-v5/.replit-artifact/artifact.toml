@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Sonic Brush V5"
+description = "A premium, mobile-first product landing page for Sonic Brush V5 that explains the product, builds trust, and sends qualified buyers to WhatsApp for manual order confirmation."
+version = "1.0.0"
+id = "artifacts/sonic-brush-v5"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23618
+
+[services.development]
+run = "pnpm --filter @workspace/sonic-brush-v5 run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/sonic-brush-v5", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/sonic-brush-v5/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23618"
+BASE_PATH = "/"

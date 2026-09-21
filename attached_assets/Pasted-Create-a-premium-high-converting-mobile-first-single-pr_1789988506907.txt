@@ -1,0 +1,861 @@
+Create a premium, high-converting, mobile-first single-product landing page for a branded product called:
+
+SONIC BRUSH® V5
+
+PRODUCT:
+Sonic Brush® V5 — fully automatic sonic toothbrush with a wrap-around mouthpiece design.
+
+IMPORTANT BUSINESS MODEL:
+This is NOT a Shopify store and there must be NO normal ecommerce checkout.
+
+The landing page is only designed to:
+1. Explain the product
+2. Build trust
+3. Demonstrate the product visually
+4. Create legitimate urgency around limited available stock
+5. Send interested customers to WhatsApp
+6. Allow the seller to manually confirm the order and payment through WhatsApp
+
+PRIMARY CTA:
+"ORDER NOW ON WHATSAPP"
+
+SECONDARY CTA:
+"SEE HOW IT WORKS"
+
+All primary CTA buttons should open WhatsApp with a pre-filled message such as:
+
+"Hi, I'm interested in ordering the Sonic Brush® V5. Please confirm current stock, available colors, price and payment details."
+
+Do NOT create:
+- Shopify-style cart
+- Add to cart
+- Checkout page
+- Account/login
+- Fake order tracking
+- Fake countdown timer
+- Fake stock counter
+- Fake reviews
+- Fake customer numbers
+- Fake certifications
+- Fake guarantees
+- Fake medical claims
+- Fake "official store" claims
+
+The page should feel like a premium direct-response product landing page, NOT like a cheap dropshipping website.
+
+--------------------------------------------------
+DESIGN DIRECTION
+--------------------------------------------------
+
+Overall aesthetic:
+
+Premium
+Minimal
+Modern
+Dental-tech
+Clean
+Trustworthy
+High-end consumer technology
+
+Think:
+Apple-style product presentation + premium dental-care brand + direct-response landing page.
+
+Use a mostly white / very light neutral background with sophisticated dark typography and restrained green/blue accents.
+
+Avoid:
+- Loud red/yellow ecommerce colors
+- Cheap-looking gradients
+- Excessive emojis
+- Clutter
+- Too many animations
+- Generic stock photography
+- Fake dentist imagery
+- Fake medical diagrams
+- Overly aggressive sales language
+
+Use large product photography and the seller's REAL product videos prominently.
+
+Typography:
+- Modern sans-serif
+- Strong hierarchy
+- Large bold headlines
+- Comfortable line spacing
+- Excellent mobile readability
+
+The website must look extremely good on mobile because most traffic will come from TikTok, Instagram, Facebook and WhatsApp.
+
+--------------------------------------------------
+SECTION 1 — HERO
+--------------------------------------------------
+
+Create a visually striking hero section.
+
+LEFT / TOP:
+Small trust/status label:
+
+"LIMITED STOCK AVAILABLE"
+
+Only display this statement because the seller genuinely has limited inventory.
+
+Do NOT use a fake countdown timer.
+
+Main headline:
+
+"Meet the Smarter Way to Brush."
+
+Subheadline:
+
+"Full-mouth sonic cleaning in a simple, hands-free routine."
+
+Then show the product prominently.
+
+Use the seller's REAL product video as the primary visual if available.
+
+Video behavior:
+- autoplay muted where technically appropriate
+- loop
+- rounded corners
+- premium presentation
+- visible play/pause control
+- optimized for mobile
+- do not make the video huge enough to slow down page loading
+
+Below the video/product:
+
+"SONIC BRUSH® V5"
+
+Then a concise benefit statement:
+
+"Designed to clean your teeth simultaneously with sonic technology — without the repetitive scrubbing of a traditional toothbrush."
+
+CTA:
+
+[ ORDER NOW ON WHATSAPP ]
+
+Secondary CTA:
+
+[ WATCH HOW IT WORKS ]
+
+Below CTA:
+
+"Manual order confirmation • Secure payment verification"
+
+Do NOT say "100% guaranteed results."
+
+--------------------------------------------------
+SECTION 2 — THE PROBLEM
+--------------------------------------------------
+
+Create a short emotional/problem-focused section.
+
+Headline:
+
+"Still brushing tooth by tooth?"
+
+Body:
+
+"Traditional brushing takes time, requires consistent technique, and can be easy to rush when you're busy."
+
+Then visually transition into:
+
+"What if your daily brushing routine could be simpler?"
+
+Keep this section short.
+
+Do not make exaggerated statements about traditional toothbrushes being harmful.
+
+--------------------------------------------------
+SECTION 3 — PRODUCT REVEAL / VIDEO
+--------------------------------------------------
+
+Use one of the seller's strongest demonstration videos.
+
+Headline:
+
+"See the Sonic Brush® V5 in action."
+
+Subheadline:
+
+"Designed around a full-mouth brushing experience with sonic vibrations and a wrap-around mouthpiece."
+
+Embed the actual supplied product video.
+
+Under the video add:
+
+"One press. A simpler brushing routine."
+
+CTA:
+
+[ ORDER ON WHATSAPP ]
+
+--------------------------------------------------
+SECTION 4 — 30-SECOND EXPERIENCE
+--------------------------------------------------
+
+Create a large visual section.
+
+Headline:
+
+"Your brushing routine, simplified to 30 seconds."
+
+Explain:
+
+"Sonic Brush® V5 is designed to clean all teeth simultaneously, helping make everyday brushing faster and easier."
+
+Create a visual 3-step process:
+
+01
+"Place"
+
+Position the mouthpiece comfortably around your teeth.
+
+02
+"Press"
+
+Activate the Sonic Brush® V5.
+
+03
+"30 Seconds"
+
+Enjoy a quick full-mouth brushing routine.
+
+IMPORTANT:
+Present "30 seconds" as the product's designed brushing cycle, not as a medical guarantee.
+
+--------------------------------------------------
+SECTION 5 — 3-IN-1 ORAL CARE
+--------------------------------------------------
+
+Headline:
+
+"More than just brushing."
+
+Create three premium cards:
+
+01 — EFFICIENT CLEANING
+
+"Sonic vibrations and the wrap-around mouthpiece are designed to make everyday tooth cleaning simple and efficient."
+
+02 — GUM MASSAGE
+
+"A dedicated gum-massage experience adds another dimension to your daily oral-care routine."
+
+03 — COLD-LIGHT WHITENING
+
+"The V5 includes a cold-light whitening function designed to support a brighter-looking smile."
+
+IMPORTANT:
+Do NOT say:
+"Whitens your teeth instantly."
+"Removes all stains."
+"Cures gum disease."
+"Prevents cavities."
+"Clinically proven to treat disease."
+
+Only use substantiated product/function descriptions.
+
+--------------------------------------------------
+SECTION 6 — WHY THE DESIGN IS DIFFERENT
+--------------------------------------------------
+
+Headline:
+
+"Why is the Sonic Brush® V5 different?"
+
+Show a close-up product image/video.
+
+Create four feature blocks:
+
+FULL-MOUTH DESIGN
+
+"Designed to cover the teeth simultaneously rather than brushing one section at a time."
+
+45° ANGLED SILICONE BRISTLES
+
+"The silicone bristles use a 45° angled design inspired by the Bass brushing technique."
+
+SONIC VIBRATIONS
+
+"Thousands of sonic vibrations provide the brushing action."
+
+HANDS-FREE-STYLE EXPERIENCE
+
+"Designed to reduce the repetitive brushing movements required with a traditional toothbrush."
+
+Keep the language factual and avoid unsupported clinical outcomes.
+
+--------------------------------------------------
+SECTION 7 — USE CASE / LIFESTYLE
+--------------------------------------------------
+
+Use real product lifestyle footage.
+
+Headline:
+
+"Made for people who want a simpler routine."
+
+Create small cards:
+
+"Busy mornings"
+
+"Simple daily routine"
+
+"Travel"
+
+"People who dislike traditional brushing"
+
+"Tech lovers"
+
+"Anyone looking to simplify oral care"
+
+Do not imply the product is medically necessary.
+
+--------------------------------------------------
+SECTION 8 — WHAT YOU GET
+--------------------------------------------------
+
+Headline:
+
+"Everything you need to get started."
+
+Use clean product/package visuals.
+
+Show:
+
+✓ 1 × Sonic Brush® V5
+✓ 1 × USB Charging Cable
+✓ 1 × Charging Station
+✓ 1 × User Manual
+
+This package composition is based on the current product information and should be updated if the seller's actual supplied package differs.
+
+--------------------------------------------------
+SECTION 9 — BATTERY / CONVENIENCE
+--------------------------------------------------
+
+Headline:
+
+"Built for everyday use."
+
+Explain:
+
+"The Sonic Brush® V5 is rechargeable and the product information specifies up to 30 uses per charge."
+
+Show:
+
+"UP TO 30 USES / CHARGE"
+
+Do not promise an exact number of days because usage frequency varies.
+
+--------------------------------------------------
+SECTION 10 — COLOR OPTIONS
+--------------------------------------------------
+
+Create a premium color selector.
+
+Available variants:
+
+BLACK
+WHITE
+PINK
+BLUE
+
+Use actual product images for each color.
+
+The selected color should visually highlight.
+
+CTA under the selector:
+
+[ ORDER THIS COLOR ON WHATSAPP ]
+
+The WhatsApp message should dynamically include the selected color.
+
+Example:
+
+"Hi, I want to order the Sonic Brush® V5 in Blue. Please confirm availability, price and payment details."
+
+IMPORTANT:
+Do not show colors as available if the seller does not actually have them.
+
+--------------------------------------------------
+SECTION 11 — LIMITED STOCK
+--------------------------------------------------
+
+This section is extremely important.
+
+Headline:
+
+"Limited Stock. Available While Supplies Last."
+
+Body:
+
+"We currently have a limited quantity available. Once the available stock is sold, orders for this batch may close."
+
+Add a premium stock indicator:
+
+"CURRENT BATCH — LIMITED AVAILABILITY"
+
+DO NOT create a fake dynamic stock number.
+
+DO NOT write:
+"Only 3 left!"
+"Only 7 remaining!"
+unless the seller has verified that exact quantity.
+
+DO NOT create a fake countdown timer.
+
+The urgency must come from genuine inventory scarcity.
+
+CTA:
+
+[ CHECK AVAILABILITY ON WHATSAPP ]
+
+--------------------------------------------------
+SECTION 12 — HOW ORDERING WORKS
+--------------------------------------------------
+
+Because there is no online checkout, make the ordering process extremely clear.
+
+Headline:
+
+"How To Order"
+
+Create 4 steps:
+
+STEP 1
+"Choose your color"
+
+Select Black, White, Pink or Blue.
+
+STEP 2
+"Message us on WhatsApp"
+
+Click the order button and send your order details.
+
+STEP 3
+"Confirm availability"
+
+We manually confirm your selected variant, current price and delivery details.
+
+STEP 4
+"Complete payment"
+
+After confirmation, payment instructions are provided through WhatsApp.
+
+Order is confirmed after payment is successfully verified.
+
+CTA:
+
+[ ORDER ON WHATSAPP ]
+
+--------------------------------------------------
+SECTION 13 — WHATSAPP ORDER FORM
+--------------------------------------------------
+
+Create a visually clean WhatsApp order card.
+
+Headline:
+
+"Ready to order?"
+
+Fields/instructions:
+
+Full Name
+Phone Number
+City
+Complete Delivery Address
+Selected Color
+Quantity
+
+But do NOT make this a complicated website form.
+
+Primary action:
+
+[ CONTINUE ON WHATSAPP ]
+
+When clicked, open WhatsApp with a pre-filled message:
+
+"Hi! I want to order the Sonic Brush® V5.
+
+Name:
+City:
+Address:
+Phone:
+Color:
+Quantity:
+
+Please confirm availability and payment details."
+
+Use the seller's actual WhatsApp number as a configurable variable:
+
+WHATSAPP_NUMBER = [INSERT NUMBER]
+
+--------------------------------------------------
+SECTION 14 — TRUST SECTION
+--------------------------------------------------
+
+Headline:
+
+"Simple. Clear. Transparent."
+
+Use four trust points:
+
+✓ Product information clearly displayed
+✓ Manual order confirmation
+✓ Payment verified before order confirmation
+✓ WhatsApp customer support
+
+If the seller has an actual return policy, warranty or replacement policy, display it here.
+
+Do NOT invent a warranty.
+
+Do NOT say "100% risk free" unless there is a genuine policy supporting it.
+
+--------------------------------------------------
+SECTION 15 — REVIEWS
+--------------------------------------------------
+
+ONLY use genuine customer reviews supplied by the seller or legitimately available for use.
+
+If genuine reviews are available:
+
+Headline:
+
+"What Customers Say"
+
+Display:
+- review text
+- first name / initials if permitted
+- country/location only if legitimately available
+- real customer image only with appropriate permission
+
+Do NOT fabricate reviews.
+
+Do NOT generate names such as:
+"Sarah, Lahore"
+"Ali, Karachi"
+just to make the page look authentic.
+
+If no verified local reviews are available, OMIT this section rather than inventing testimonials.
+
+--------------------------------------------------
+SECTION 16 — FAQ
+--------------------------------------------------
+
+Create a clean accordion FAQ.
+
+Question 1:
+"How does the Sonic Brush® V5 work?"
+
+Answer:
+"It uses sonic vibrations through a wrap-around mouthpiece design to simplify the brushing experience."
+
+Question 2:
+"How long is the brushing cycle?"
+
+Answer:
+"The product is designed around a 30-second full-mouth brushing cycle."
+
+Question 3:
+"What colors are available?"
+
+Answer:
+"Black, White, Pink and Blue, subject to current stock."
+
+Question 4:
+"How do I order?"
+
+Answer:
+"Click any Order on WhatsApp button and send your details. We will manually confirm availability and provide payment instructions."
+
+Question 5:
+"Is COD available?"
+
+Answer:
+"COD is currently not available. Orders are confirmed after payment verification."
+
+Question 6:
+"How do I pay?"
+
+Answer:
+"After your order details are confirmed through WhatsApp, you will receive the available payment instructions."
+
+Question 7:
+"How many uses per charge?"
+
+Answer:
+"The product information specifies up to 30 uses per charge. Actual battery performance can vary depending on usage."
+
+Question 8:
+"What comes in the box?"
+
+Answer:
+"1 Sonic Brush® V5, 1 USB charging cable, 1 charging station and 1 user manual, subject to the actual supplied package."
+
+Question 9:
+"Is this an official Sonic Brush® store?"
+
+Answer:
+DO NOT automatically answer "yes."
+
+Instead use a configurable statement based on the seller's actual status:
+
+[INSERT ACCURATE RESELLER / BRAND RELATIONSHIP STATEMENT]
+
+Never falsely claim authorization or official affiliation.
+
+--------------------------------------------------
+SECTION 17 — FINAL CTA
+--------------------------------------------------
+
+Create a powerful but clean final section.
+
+Headline:
+
+"Ready to make your brushing routine simpler?"
+
+Subheadline:
+
+"Limited stock is currently available."
+
+CTA:
+
+[ ORDER SONIC BRUSH® V5 ON WHATSAPP ]
+
+Small text underneath:
+
+"Availability and payment are manually confirmed through WhatsApp."
+
+--------------------------------------------------
+FOOTER
+--------------------------------------------------
+
+Include:
+
+Sonic Brush® V5
+Order via WhatsApp
+Contact
+FAQ
+Shipping / Delivery Information
+Return / Refund Policy
+Privacy Policy
+Terms & Conditions
+
+Do not create fake policy pages.
+
+If policy information has not been provided, use placeholders that can be edited later.
+
+--------------------------------------------------
+CONVERSION REQUIREMENTS
+--------------------------------------------------
+
+Every major section should eventually lead toward a WhatsApp CTA, but do NOT make the page feel spammy.
+
+Recommended CTA placements:
+
+1. Hero
+2. After product demonstration
+3. After benefits
+4. After color selection
+5. Limited stock section
+6. Final CTA
+
+Use a sticky mobile bottom bar:
+
+[ ORDER ON WHATSAPP ]
+
+The sticky bar should remain visible while scrolling but must not block content.
+
+--------------------------------------------------
+MOBILE-FIRST REQUIREMENTS
+--------------------------------------------------
+
+This is extremely important.
+
+Design for mobile first.
+
+Most visitors will arrive from short-form social media.
+
+Requirements:
+
+- Large readable typography
+- Thumb-friendly buttons
+- Minimum 44px tap targets
+- Fast-loading videos
+- Compressed images
+- Lazy-load below-the-fold media
+- No huge desktop-only sections
+- No horizontal scrolling
+- Sticky WhatsApp CTA
+- Excellent spacing
+- Very fast initial load
+- Avoid unnecessary JavaScript
+- Avoid excessive animation
+
+--------------------------------------------------
+VIDEO STRATEGY
+--------------------------------------------------
+
+The seller has REAL product videos.
+
+Use them as the main visual selling mechanism.
+
+Create video slots for:
+
+VIDEO 1:
+Product hero / overall demonstration
+
+VIDEO 2:
+30-second brushing demonstration
+
+VIDEO 3:
+Close-up of mouthpiece / bristles
+
+VIDEO 4:
+Product functions
+
+VIDEO 5:
+Unboxing / what's included
+
+VIDEO 6:
+Lifestyle / real-world use
+
+Each video should have a short headline above it explaining what the visitor should notice.
+
+Do not autoplay multiple videos simultaneously.
+
+--------------------------------------------------
+COPYWRITING STYLE
+--------------------------------------------------
+
+Tone:
+
+Premium
+Confident
+Clear
+Modern
+Trustworthy
+Simple
+
+Avoid hype such as:
+
+"INSANE!"
+"CRAZY DEAL!"
+"BUY BEFORE IT'S TOO LATE!!!"
+"DOCTORS HATE THIS!"
+"Miracle toothbrush!"
+"100% guaranteed whitening!"
+
+Instead use:
+
+"Designed for..."
+"Built around..."
+"Made to simplify..."
+"Experience..."
+"Limited stock available..."
+"Available while this batch lasts."
+
+--------------------------------------------------
+BRAND SAFETY
+--------------------------------------------------
+
+The product is branded.
+
+Do NOT alter the product name:
+
+Sonic Brush® V5
+
+Do not create a new fake brand.
+
+Do not claim:
+"Official Sonic Brush Pakistan"
+"Authorized Sonic Brush Distributor"
+"Official Sonic Brush Store"
+
+unless that status is genuinely verified.
+
+Do not copy the original manufacturer's entire website.
+
+Create an original landing-page experience using the product's legitimate specifications and the seller's own videos/assets.
+
+--------------------------------------------------
+URGENT CONVERSION PSYCHOLOGY
+--------------------------------------------------
+
+Use legitimate urgency rather than deception.
+
+The key psychological sequence should be:
+
+PROBLEM
+↓
+CURIOSITY
+↓
+PRODUCT DEMONSTRATION
+↓
+BENEFITS
+↓
+PROOF / TRANSPARENCY
+↓
+LIMITED STOCK
+↓
+EASY ORDER PROCESS
+↓
+WHATSAPP
+
+The visitor should understand exactly:
+
+"What is it?"
+"How does it work?"
+"Why is it different?"
+"What do I get?"
+"How much does it cost?"
+"Is it actually available?"
+"How do I order?"
+"How do I pay?"
+"What happens after I pay?"
+
+There should be ZERO confusion.
+
+--------------------------------------------------
+PRICE
+--------------------------------------------------
+
+Use these configurable variables:
+
+SELLING_PRICE = [INSERT YOUR PRICE]
+ORIGINAL_PRICE = [INSERT ONLY IF GENUINELY APPLICABLE]
+CURRENCY = PKR
+
+Do NOT invent an original price.
+
+Do NOT show a fake discount percentage.
+
+If the seller has a genuine limited-batch price, present it clearly.
+
+Example:
+
+"Limited Batch Price
+Rs. [PRICE]"
+
+--------------------------------------------------
+FINAL DESIGN GOAL
+--------------------------------------------------
+
+The finished landing page should feel like a premium branded consumer-tech product page.
+
+It should NOT look like:
+- a cheap dropshipping store
+- a generic Shopify template
+- a spammy Facebook ad landing page
+- a fake official brand website
+
+It should feel:
+premium + trustworthy + visually impressive + product-focused + mobile-first + WhatsApp-first.
+
+PRIMARY CONVERSION:
+WhatsApp order inquiry.
+
+SECONDARY CONVERSION:
+Product video engagement.
+
+The page should be designed so a visitor can understand the entire offer within approximately 30–60 seconds while still having detailed information available for visitors who scroll deeper.
