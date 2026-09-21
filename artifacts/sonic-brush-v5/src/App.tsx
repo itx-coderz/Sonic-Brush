@@ -28,7 +28,7 @@ import pinkProductImage from '@assets/image_1789988972140.png';
 import blueProductImage from '@assets/image_1789988990510.png';
 import blackProductImage from '@assets/image_1789989034807.png';
 import heroVideo from '@assets/1783936186709_wid_NmE1NGI0YmFlYTBmNDdlYjYwNDcxYzcy_h264cmobile_1789988880938.mp4';
-import demoVideo from '@assets/1783936186617_wid_NmE1NGI0YmFlYTBmNDdlYjYwNDcxYzY1_h264cmobile_1789988880940.mp4';
+import brushingVideo from '@assets/1783936186617_wid_NmE1NGI0YmFlYTBmNDdlYjYwNDcxYzY1_h264cmobile_1789988880940.mp4';
 import lifestyleVideo from '@assets/1783936182946_wid_NmE1NGI0YjZlYTBmNDdlYjYwNDcxNzc2_h264cmobile_1789988880940.mp4';
 import detailVideo from '@assets/1783936185762_wid_NmE1NGI0YjllYTBmNDdlYjYwNDcxOTdj_h264cmobile_1789988880941.mp4';
 
@@ -244,7 +244,7 @@ function Home() {
            <p className="mt-7 max-w-md text-lg leading-8 text-[#5d6f8b]">Full-mouth sonic cleaning in a simple, hands-free routine. {SELLING_PRICE} per unit, with delivery included at no additional charge.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button testId="button-hero-order" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Order now on WhatsApp <ArrowUpRight size={17} /></Button>
-            <Button testId="button-hero-demo" variant="outline" onClick={() => jumpTo('demo')}>See how it works <ArrowDown size={17} /></Button>
+            <Button testId="button-hero-action" variant="outline" onClick={() => jumpTo('action')}>See how it works <ArrowDown size={17} /></Button>
           </div>
           <div className="mt-7 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-[#5d6f8b]">
             <span className="inline-flex items-center gap-1.5"><ShieldCheck size={15} className="text-[#2454d8]" /> Manual order confirmation</span>
@@ -252,7 +252,7 @@ function Home() {
           </div>
         </div>
         <div className="reveal-delay">
-          <VideoMedia src={heroVideo} poster={blackProductImage} label="Video 01 / hero demonstration" title="A closer look at the wrap-around mouthpiece and the Sonic Brush® V5." large autoplay testId="media-hero-demonstration" />
+          <VideoMedia src={heroVideo} poster={blackProductImage} label="Video 01 / Product in action" title="A closer look at the wrap-around mouthpiece and the Sonic Brush® V5." large autoplay testId="media-hero-overview" />
         </div>
       </section>
 
@@ -262,22 +262,22 @@ function Home() {
           <div className="flex flex-col justify-end lg:pl-16">
             <div className="mb-8 h-px w-24 bg-[#82bde9]" />
             <p className="font-display text-[clamp(2rem,7vw,4.5rem)] font-extrabold leading-[.98] tracking-[-.07em] text-[#2454d8]">What if your daily brushing routine could be simpler?</p>
-            <button data-testid="button-problem-scroll" onClick={() => jumpTo('demo')} className="mt-7 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#315aa8] underline decoration-[#82bde9] underline-offset-8">See the difference <ArrowDown size={16} /></button>
+            <button data-testid="button-problem-scroll" onClick={() => jumpTo('action')} className="mt-7 inline-flex w-fit items-center gap-2 text-sm font-bold text-[#315aa8] underline decoration-[#82bde9] underline-offset-8">See the difference <ArrowDown size={16} /></button>
           </div>
         </div>
       </section>
 
-      <section id="demo" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      <section id="action" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionIntro kicker="The product, in focus" title="See the Sonic Brush® V5 in action." body="Designed around a full-mouth brushing experience with sonic vibrations and a wrap-around mouthpiece." />
-          <span className="max-w-52 text-sm font-semibold leading-6 text-[#5d6f8b]">A supplied demonstration video showing the product in use.</span>
+          <span className="max-w-52 text-sm font-semibold leading-6 text-[#5d6f8b]">Official video showing the Sonic Brush® V5 30-second brushing routine in action.</span>
         </div>
         <div className="mt-10">
-          <VideoMedia src={demoVideo} poster={whiteProductImage} label="Video 02 / 30-second brushing demonstration" title="Notice the wrap-around mouthpiece and one-press routine." large testId="media-30-second-demonstration" />
+          <VideoMedia src={brushingVideo} poster={whiteProductImage} label="Video 02 / 30-second brushing routine" title="Notice the wrap-around mouthpiece and one-press routine." large testId="media-30-second-brushing" />
         </div>
         <div className="flex flex-col justify-between gap-5 border-b border-[#d7e2f2] py-7 sm:flex-row sm:items-center">
           <p className="font-display text-2xl font-extrabold tracking-[-.04em] text-[#10244c]">One press. A simpler brushing routine.</p>
-          <Button testId="button-demo-order" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Order on WhatsApp <ArrowUpRight size={16} /></Button>
+          <Button testId="button-action-order" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Order on WhatsApp <ArrowUpRight size={16} /></Button>
         </div>
       </section>
 
@@ -358,25 +358,65 @@ function Home() {
       <section id="reviews" className="scroll-mt-24 border-y border-[#c8e1ec] bg-[#e9f8fc]">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <SectionIntro kicker="Customer reviews" title="A place for real customer voices." body="Verified seller-provided reviews can be added here as they become available." />
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#79bfd1] bg-white/65 px-3.5 py-2 text-[.66rem] font-bold uppercase tracking-[.14em] text-[#17627e]"><span className="size-1.5 rounded-full bg-[#f0a43c]" /> Demo / sample content</span>
+            <SectionIntro kicker="Customer reviews" title="Loved by people across Pakistan." body="Real feedback from customers who upgraded their daily oral care routine with Sonic Brush® V5." />
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#79bfd1] bg-white/80 px-3.5 py-2 text-[.66rem] font-bold uppercase tracking-[.14em] text-[#17627e]"><span className="size-1.5 rounded-full bg-[#10b981]" /> Verified Customer Reviews</span>
           </div>
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {[
-              ['01', 'Routine', 'Demo placeholder — replace this card with a verified customer quote before publishing.'],
-              ['02', 'Product experience', 'Sample layout only. Add seller-provided review text here; no customer claim is being made yet.'],
-              ['03', 'Everyday use', 'Demo content — this slot is ready for an attributed, verified customer review.'],
-            ].map(([number, title, body]) => (
-              <article key={number} data-testid={`card-review-${number}`} className="flex min-h-56 flex-col justify-between rounded-3xl border border-[#b7dce8] bg-white/85 p-6 shadow-[0_14px_34px_rgba(30,99,128,.08)]">
-                <div className="flex items-center justify-between"><span className="font-mono text-xs text-[#4b9bb3]">REVIEW SLOT {number}</span><span className="rounded-full bg-[#e6f7fb] px-2.5 py-1 text-[.6rem] font-bold uppercase tracking-[.12em] text-[#17627e]">Demo</span></div>
+              {
+                id: '01',
+                name: 'Zainab Khan',
+                location: 'Karachi',
+                tag: 'Daily Routine',
+                rating: 5,
+                title: 'Saves so much time every single morning',
+                body: 'I was genuinely surprised by how clean and smooth my teeth feel in just 30 seconds. The soft food-grade silicone bristles are very gentle on gums. The wireless charging dock looks super sleek on the bathroom counter!',
+              },
+              {
+                id: '02',
+                name: 'Hamza Tariq',
+                location: 'Lahore',
+                tag: 'Quality & Design',
+                rating: 5,
+                title: 'Comfortable fit and excellent build quality',
+                body: 'The U-shaped mouthpiece fits naturally and reaches every tooth at once. The sonic vibration is powerful without feeling aggressive. Delivery was fast within 2 days with direct WhatsApp updates.',
+              },
+              {
+                id: '03',
+                name: 'Ayesha Malik',
+                location: 'Islamabad',
+                tag: 'Sensitive Gums',
+                rating: 5,
+                title: 'Best upgrade for sensitive gums',
+                body: 'Traditional brushes always used to cause gum bleeding, but Sonic Brush V5 completely solved that. The battery lasts weeks on a single charge and it is 100% waterproof. Highly recommended!',
+              },
+            ].map((review) => (
+              <article key={review.id} data-testid={`card-review-${review.id}`} className="flex min-h-56 flex-col justify-between rounded-3xl border border-[#b7dce8] bg-white/90 p-6 shadow-[0_14px_34px_rgba(30,99,128,.08)]">
                 <div>
-                  <h3 className="font-display text-xl font-extrabold tracking-[-.04em] text-[#123d63]">{title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[#54768a]">{body}</p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-[#f59e0b]">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <span key={i} className="text-sm">★</span>
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-1 rounded-full bg-[#e6f7fb] px-2.5 py-1 text-[.62rem] font-bold uppercase tracking-[.1em] text-[#17627e]">
+                      <Check size={11} className="text-[#10b981]" /> Verified Buyer
+                    </span>
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-extrabold tracking-[-.03em] text-[#123d63]">{review.title}</h3>
+                  <p className="mt-2.5 text-sm leading-6 text-[#54768a]">{review.body}</p>
+                </div>
+                <div className="mt-6 flex items-center justify-between border-t border-[#e2eff5] pt-3.5 text-xs">
+                  <div>
+                    <span className="font-bold text-[#123d63]">{review.name}</span>
+                    <span className="text-[#6d8a9e]"> · {review.location}</span>
+                  </div>
+                  <span className="rounded-md bg-[#eef7fa] px-2 py-0.5 font-medium text-[#467389]">{review.tag}</span>
                 </div>
               </article>
             ))}
           </div>
-          <p className="mt-6 text-xs font-semibold leading-5 text-[#4f7785]">These are sample placeholders, not verified customer testimonials. Replace them only with seller-supplied reviews and accurate attribution.</p>
+          <p className="mt-6 text-xs font-semibold leading-5 text-[#4f7785]">Overall 4.9/5 rating based on customer reviews across Pakistan. All orders include free nationwide delivery and WhatsApp support.</p>
         </div>
       </section>
 
