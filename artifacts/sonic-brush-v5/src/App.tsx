@@ -19,13 +19,18 @@ import {
   HeartPulse,
   Menu,
   MessageCircle,
+  Minus,
   PackageCheck,
   Pause,
   Play,
+  Plus,
   Send,
   ShieldCheck,
+  ShoppingBag,
+  ShoppingCart,
   Sparkles,
   Timer,
+  Trash2,
   Volume2,
   VolumeX,
   Waves,
@@ -44,14 +49,17 @@ import detailVideo from '@assets/1783936185762_wid_NmE1NGI0YjllYTBmNDdlYjYwNDcxO
 
 const queryClient = new QueryClient();
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '+923077339343';
+const UNIT_PRICE = 25000;
 const SELLING_PRICE = 'PKR 25,000';
-const DELIVERY_OFFER = 'Delivery included — no additional charge';
+const DELIVERY_OFFER = 'Free Nationwide Delivery';
+
+const formatPrice = (qty: number) => `PKR ${(qty * UNIT_PRICE).toLocaleString()}`;
 
 const colors = [
-  { name: 'Black', image: blackProductImage, tint: '#10224a' },
-  { name: 'White', image: whiteProductImage, tint: '#eaf1fb' },
-  { name: 'Pink', image: pinkProductImage, tint: '#f7dfe7' },
-  { name: 'Blue', image: blueProductImage, tint: '#d7f7fb' },
+  { name: 'Black', image: blackProductImage, tint: '#10224a', hex: '#111827' },
+  { name: 'White', image: whiteProductImage, tint: '#eaf1fb', hex: '#f3f4f6' },
+  { name: 'Pink', image: pinkProductImage, tint: '#f7dfe7', hex: '#f472b6' },
+  { name: 'Blue', image: blueProductImage, tint: '#d7f7fb', hex: '#38bdf8' },
 ];
 
 const faqs = [
@@ -59,7 +67,7 @@ const faqs = [
   ['Is it safe for sensitive teeth and gums?', 'Yes! Unlike hard nylon bristles that can abrade enamel or irritate gums, the soft antimicrobial silicone bristles gently stimulate gum blood flow while lifting away plaque without abrasive friction.'],
   ['How long does the battery last on a single charge?', 'A single full charge on the magnetic induction charging dock delivers up to 30 brushing sessions (approximately 2 to 3 weeks of daily use).'],
   ['Is it waterproof?', 'Yes, the Sonic Brush® V5 is IPX7 waterproof certified. You can comfortably use and rinse it directly under running water.'],
-  ['How do I place an order?', 'Simply select your preferred color and click "Order on WhatsApp". We confirm your shipping address and prepare your order with free nationwide delivery across Pakistan.'],
+  ['How does the WhatsApp order process work?', 'When you proceed from the side cart, a pre-filled WhatsApp message will open with your selected color and quantity. Our team confirms availability and guides you through payment and immediate dispatch.'],
 ];
 
 const customerReviews = [
@@ -125,19 +133,20 @@ function whatsappMessage(text: string) {
   window.open(url, '_blank', 'noopener,noreferrer');
 }
 
-function orderMessage(color: string, quantity = 1, address = '', city = '', name = '', phone = '') {
-  const parts = [
-    'Hello, I would like to order the Sonic Brush® V5.',
-    `Selected Color: ${color}`,
-    `Quantity: ${quantity}`,
-    `Price: ${SELLING_PRICE} (Free Delivery Included)`,
+function generateWhatsAppOrderMessage(color: string, quantity = 1) {
+  const total = formatPrice(quantity);
+  const lines = [
+    'Hello Sonic Brush Pakistan! 👋',
+    'I would like to order the Sonic Brush® V5.',
+    '',
+    `📦 Selected Color: ${color}`,
+    `🔢 Quantity: ${quantity}`,
+    `💰 Total Amount: ${total}`,
+    `🚚 Shipping: ${DELIVERY_OFFER} Included`,
+    '',
+    'Please confirm my order and share payment/delivery instructions.',
   ];
-  if (name) parts.push(`Name: ${name}`);
-  if (phone) parts.push(`Phone: ${phone}`);
-  if (city) parts.push(`City: ${city}`);
-  if (address) parts.push(`Delivery Address: ${address}`);
-  parts.push('Please confirm availability and share payment/delivery details.');
-  return parts.join('\n');
+  return lines.join('\n');
 }
 
 function Button({
@@ -150,7 +159,7 @@ function Button({
 }: {
   children: ReactNode;
   onClick?: () => void;
-  variant?: 'primary' | 'outline' | 'quiet';
+  variant?: 'primary' | 'outline' | 'quiet' | 'whatsapp';
   className?: string;
   type?: 'button' | 'submit';
   testId?: string;
@@ -159,6 +168,7 @@ function Button({
     primary: 'bg-[#2454d8] text-[#fbfcff] hover:bg-[#193fae] shadow-[0_10px_25px_rgba(36,84,216,.25)] active:shadow-none',
     outline: 'border border-[#9eb6e4] bg-white text-[#19356e] hover:border-[#2454d8] hover:bg-[#edf3ff]',
     quiet: 'text-[#365a9d] hover:text-[#19356e] hover:bg-[#edf3ff]',
+    whatsapp: 'bg-[#25d366] text-white hover:bg-[#20ba59] shadow-[0_10px_25px_rgba(37,211,102,.3)] active:shadow-none',
   };
   return (
     <motion.button
@@ -209,7 +219,7 @@ function SectionIntro({ kicker, title, body, light = false, center = false }: { 
 }
 
 /** 
- * Header Hero Video Player (Clean, Responsive, Unobstructed)
+ * Header Hero Video Player
  */
 function HeroVideoPlayer({ src, poster }: { src: string; poster: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -244,7 +254,7 @@ function HeroVideoPlayer({ src, poster }: { src: string; poster: string }) {
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07132f]/80 via-transparent to-[#102e6e]/20" />
 
-        {/* Floating pulse badge top left */}
+        {/* Floating badge top left */}
         <motion.div
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -290,7 +300,7 @@ function HeroVideoPlayer({ src, poster }: { src: string; poster: string }) {
 }
 
 /**
- * Mobile-Responsive Video Showcase Carousel (With Clear Video Frame & Dedicated Info/Controls Card Below)
+ * Mobile-Responsive Video Showcase Carousel
  */
 function VideoCarousel() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -331,7 +341,7 @@ function VideoCarousel() {
 
   return (
     <div className="relative mx-auto max-w-4xl">
-      {/* Category Tabs: Centered and responsive */}
+      {/* Category Tabs */}
       <div className="mb-5 sm:mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
         {showcaseVideos.map((item, idx) => (
           <button
@@ -349,7 +359,7 @@ function VideoCarousel() {
         ))}
       </div>
 
-      {/* Main Video Screen with Clean Overlays */}
+      {/* Main Video Screen */}
       <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[#cbdcf5] bg-[#0c1d43] shadow-[0_16px_40px_rgba(16,40,90,.12)]">
         <AnimatePresence mode="wait">
           <motion.div
@@ -400,7 +410,7 @@ function VideoCarousel() {
         </AnimatePresence>
       </div>
 
-      {/* Video Details Card & Navigation Controls (Separated from the video screen so it never covers the video!) */}
+      {/* Video Details Card & Navigation Controls */}
       <div className="mt-4 rounded-2xl border border-[#d2e1f2] bg-white p-4 sm:p-6 shadow-[0_8px_24px_rgba(20,50,110,.05)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
@@ -416,9 +426,7 @@ function VideoCarousel() {
           </p>
         </div>
 
-        {/* Carousel Navigation Buttons & Dots */}
         <div className="flex items-center justify-between sm:justify-end gap-3 pt-3 sm:pt-0 border-t sm:border-t-0 border-[#edf3fb] shrink-0">
-          {/* Progress dots */}
           <div className="flex items-center gap-1.5">
             {showcaseVideos.map((_, i) => (
               <button
@@ -456,29 +464,254 @@ function VideoCarousel() {
   );
 }
 
+/**
+ * Slide-Over Side Cart Drawer Component
+ */
+function SideCartDrawer({
+  isOpen,
+  onClose,
+  selectedColor,
+  onSelectColor,
+  quantity,
+  onUpdateQuantity,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  selectedColor: string;
+  onSelectColor: (color: string) => void;
+  quantity: number;
+  onUpdateQuantity: (qty: number) => void;
+}) {
+  const currentColorObj = colors.find((c) => c.name === selectedColor) || colors[0];
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  const handleCheckout = () => {
+    const message = generateWhatsAppOrderMessage(selectedColor, quantity);
+    whatsappMessage(message);
+    onClose();
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 overflow-hidden">
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={onClose}
+            className="fixed inset-0 bg-[#07132f]/60 backdrop-blur-xs"
+          />
+
+          {/* Drawer Slide-in */}
+          <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <motion.aside
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 320 }}
+              className="flex w-screen max-w-md flex-col bg-white shadow-2xl"
+            >
+              {/* Cart Header */}
+              <div className="flex items-center justify-between border-b border-[#e2edf8] px-5 py-4 sm:px-6">
+                <div className="flex items-center gap-2.5">
+                  <div className="grid size-9 place-items-center rounded-xl bg-[#eef5ff] text-[#2454d8]">
+                    <ShoppingBag size={18} />
+                  </div>
+                  <div>
+                    <h2 className="font-display text-base font-extrabold text-[#0c1d43]">Your Order Cart</h2>
+                    <p className="text-xs text-[#5c779c]">Sonic Brush® V5 Pakistan</p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="grid size-9 place-items-center rounded-full text-[#6d84a7] hover:bg-[#f1f6fc] hover:text-[#0c1d43] transition-colors"
+                  aria-label="Close cart"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Cart Body */}
+              <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-6 space-y-6">
+                {/* Product Card */}
+                <div className="rounded-2xl border border-[#d2e1f2] bg-[#f8fbff] p-4 sm:p-5">
+                  <div className="flex gap-4">
+                    <div className="size-20 sm:size-24 shrink-0 overflow-hidden rounded-xl border border-[#cbdcee] bg-white p-1.5 shadow-2xs">
+                      <img src={currentColorObj.image} alt={currentColorObj.name} className="size-full object-contain" />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-start justify-between gap-2">
+                        <div>
+                          <h3 className="font-display text-sm sm:text-base font-extrabold text-[#0c1d43] leading-tight">
+                            Sonic Brush® V5
+                          </h3>
+                          <p className="text-xs text-[#58759d]">360° Sonic Toothbrush</p>
+                        </div>
+                        <span className="font-display text-sm font-extrabold text-[#2454d8]">
+                          {formatPrice(quantity)}
+                        </span>
+                      </div>
+
+                      {/* Color Pill Badges inside Cart */}
+                      <div className="mt-3">
+                        <span className="text-[11px] font-bold text-[#56749c]">Color: <span className="text-[#0c1d43]">{selectedColor}</span></span>
+                        <div className="mt-1.5 flex items-center gap-1.5">
+                          {colors.map((c) => (
+                            <button
+                              key={c.name}
+                              type="button"
+                              onClick={() => onSelectColor(c.name)}
+                              className={`group flex items-center gap-1 rounded-lg border px-2 py-1 text-[11px] font-semibold transition-all ${
+                                selectedColor === c.name
+                                  ? 'border-[#2454d8] bg-[#eaf1ff] text-[#2454d8] ring-1 ring-[#2454d8]'
+                                  : 'border-[#cbdcee] bg-white text-[#4b668d] hover:border-[#86a8e0]'
+                              }`}
+                            >
+                              <span className="size-2 rounded-full border border-black/10" style={{ backgroundColor: c.hex }} />
+                              <span>{c.name}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Quantity Selector Stepper */}
+                      <div className="mt-4 flex items-center justify-between border-t border-[#e2edf8] pt-3">
+                        <span className="text-xs font-semibold text-[#5a769e]">Quantity:</span>
+                        <div className="flex items-center gap-2 rounded-full border border-[#cbdcee] bg-white px-2 py-1 shadow-2xs">
+                          <button
+                            type="button"
+                            onClick={() => onUpdateQuantity(Math.max(1, quantity - 1))}
+                            disabled={quantity <= 1}
+                            className="grid size-6 place-items-center rounded-full text-[#385987] hover:bg-[#edf4ff] disabled:opacity-30"
+                            aria-label="Decrease quantity"
+                          >
+                            <Minus size={13} />
+                          </button>
+                          <span className="font-mono text-xs font-bold text-[#0c1d43] w-4 text-center">{quantity}</span>
+                          <button
+                            type="button"
+                            onClick={() => onUpdateQuantity(Math.min(10, quantity + 1))}
+                            disabled={quantity >= 10}
+                            className="grid size-6 place-items-center rounded-full text-[#385987] hover:bg-[#edf4ff] disabled:opacity-30"
+                            aria-label="Increase quantity"
+                          >
+                            <Plus size={13} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Package Inclusions Checklist */}
+                <div className="rounded-xl border border-[#dce7f5] bg-white p-4">
+                  <p className="text-xs font-bold text-[#0c1d43] uppercase tracking-wider">Package Includes:</p>
+                  <ul className="mt-2.5 space-y-2 text-xs text-[#526f95]">
+                    <li className="flex items-center gap-2">
+                      <Check size={14} className="text-[#10b981] shrink-0" />
+                      <span>1 × Sonic Brush® V5 ({selectedColor})</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check size={14} className="text-[#10b981] shrink-0" />
+                      <span>1 × Food-grade silicone mouthpiece</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check size={14} className="text-[#10b981] shrink-0" />
+                      <span>1 × Magnetic induction charging dock</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check size={14} className="text-[#10b981] shrink-0" />
+                      <span>1 × Fast USB charging cable + manual</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Trust Highlights */}
+                <div className="rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] p-3.5 flex items-start gap-3">
+                  <ShieldCheck size={18} className="text-[#059669] shrink-0 mt-0.5" />
+                  <div className="text-xs text-[#065f46]">
+                    <p className="font-bold">100% Free Nationwide Delivery</p>
+                    <p className="mt-0.5 text-[#047857]">Payment and delivery address are verified safely through WhatsApp before dispatch.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cart Footer */}
+              <div className="border-t border-[#e2edf8] bg-[#f8fbff] p-5 sm:p-6 space-y-4">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs text-[#5a769e]">
+                    <span>Item Subtotal ({quantity} unit{quantity > 1 ? 's' : ''})</span>
+                    <span className="font-mono font-semibold text-[#0c1d43]">{formatPrice(quantity)}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-[#5a769e]">
+                    <span>Nationwide Delivery</span>
+                    <span className="font-bold text-[#10b981] uppercase tracking-wider">FREE</span>
+                  </div>
+                  <div className="border-t border-[#dce7f5] pt-2 flex items-baseline justify-between">
+                    <span className="text-sm font-extrabold text-[#0c1d43]">Estimated Total</span>
+                    <span className="font-display text-xl font-extrabold text-[#2454d8]">{formatPrice(quantity)}</span>
+                  </div>
+                </div>
+
+                {/* WhatsApp Checkout Button */}
+                <button
+                  type="button"
+                  onClick={handleCheckout}
+                  className="w-full flex items-center justify-center gap-2.5 rounded-full bg-[#25d366] hover:bg-[#20ba59] active:scale-[.98] py-3.5 px-6 text-sm font-bold text-white shadow-[0_8px_24px_rgba(37,211,102,.35)] transition-all"
+                >
+                  <MessageCircle size={18} />
+                  <span>Proceed to WhatsApp Checkout</span>
+                  <ArrowRight size={16} />
+                </button>
+
+                <p className="text-center text-[11px] text-[#6b85a8]">
+                  Clicking opens a ready pre-filled message with your order summary.
+                </p>
+              </div>
+            </motion.aside>
+          </div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 function Home() {
   const [selectedColor, setSelectedColor] = useState('Black');
+  const [quantity, setQuantity] = useState(1);
+  const [cartOpen, setCartOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const jumpTo = (id: string) => {
     setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const submitOrder = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const color = String(data.get('color') || selectedColor);
-    const quantity = Number(data.get('quantity') || 1);
-    const name = String(data.get('name') || '');
-    const phone = String(data.get('phone') || '');
-    const city = String(data.get('city') || '');
-    const address = String(data.get('address') || '');
-    const msg = orderMessage(color, quantity, address, city, name, phone);
-    setSubmitted(true);
-    whatsappMessage(msg);
+  const openCartWithColor = (color?: string) => {
+    if (color) setSelectedColor(color);
+    setMenuOpen(false);
+    setCartOpen(true);
   };
 
   return (
@@ -487,30 +720,35 @@ function Home() {
       <div className="bg-[#0b1b3d] px-3 py-2 text-center text-[11px] sm:text-xs font-semibold text-[#bfe4f2]">
         <span className="inline-flex items-center gap-1.5">
           <Sparkles size={13} className="text-[#28c7e7] shrink-0" />
-          Direct WhatsApp Checkout · {DELIVERY_OFFER} Across Pakistan
+          Direct WhatsApp Checkout · {DELIVERY_OFFER} Across Pakistan · {SELLING_PRICE}
         </span>
       </div>
 
-      {/* Sticky Header Navbar (Proper lg breakpoint to prevent tablet collision) */}
+      {/* Sticky Header Navbar */}
       <header className="sticky top-0 z-40 border-b border-[#d8e4f5] bg-[#fbfcff]/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-8 lg:px-12">
           <Wordmark />
 
-          {/* Desktop Navigation (visible on lg: 1024px+) */}
+          {/* Desktop Navigation (lg: 1024px+) */}
           <nav className="hidden items-center gap-6 xl:gap-8 lg:flex" aria-label="Primary navigation">
             <button onClick={() => jumpTo('how-it-works')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">How it works</button>
             <button onClick={() => jumpTo('features')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">Features</button>
             <button onClick={() => jumpTo('showcase')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">Video Showcase</button>
             <button onClick={() => jumpTo('reviews')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">Reviews</button>
-            <button onClick={() => jumpTo('order')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">Order Now</button>
+            <button onClick={() => jumpTo('order')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">Order</button>
             <button onClick={() => jumpTo('faq')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">FAQ</button>
           </nav>
 
-          {/* Right Action: CTA & Mobile Hamburger Menu */}
+          {/* Right Action: Cart Open Button & Mobile Hamburger Menu */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <Button onClick={() => jumpTo('order')} className="!min-h-9 sm:!min-h-10 !px-3.5 sm:!px-5 text-xs">
-              Order Now <ArrowUpRight size={14} />
-            </Button>
+            <button
+              type="button"
+              onClick={() => openCartWithColor()}
+              className="inline-flex min-h-9 sm:min-h-10 select-none items-center justify-center gap-2 rounded-full bg-[#2454d8] hover:bg-[#193fae] px-4 sm:px-5 text-xs font-bold text-white shadow-[0_6px_20px_rgba(36,84,216,.28)] transition-all active:scale-95"
+            >
+              <ShoppingCart size={15} />
+              <span>Cart & Order</span>
+            </button>
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="grid size-9 sm:size-10 place-items-center rounded-full border border-[#c2d3ed] text-[#19356e] lg:hidden active:bg-[#edf3ff] shrink-0"
@@ -521,7 +759,7 @@ function Home() {
           </div>
         </div>
 
-        {/* Mobile & Tablet Dropdown Navigation with AnimatePresence */}
+        {/* Mobile Dropdown Navigation */}
         <AnimatePresence>
           {menuOpen && (
             <motion.nav
@@ -552,16 +790,21 @@ function Home() {
                 ))}
               </div>
               <div className="mt-3 pt-3 border-t border-[#e3edf7]">
-                <Button onClick={() => jumpTo('order')} className="w-full !min-h-11 text-xs">
-                  Order on WhatsApp · {SELLING_PRICE} <ArrowUpRight size={15} />
-                </Button>
+                <button
+                  type="button"
+                  onClick={() => openCartWithColor()}
+                  className="w-full flex items-center justify-center gap-2 rounded-full bg-[#25d366] hover:bg-[#20ba59] py-3 text-xs font-bold text-white shadow-md"
+                >
+                  <ShoppingCart size={15} />
+                  <span>Open Cart · {SELLING_PRICE}</span>
+                </button>
               </div>
             </motion.nav>
           )}
         </AnimatePresence>
       </header>
 
-      {/* 1. HERO SECTION (1 premier video in header, responsive) */}
+      {/* 1. HERO SECTION */}
       <section className="relative mx-auto max-w-7xl px-4 pt-8 pb-14 sm:px-8 sm:pt-16 sm:pb-20 lg:px-12 lg:pt-20 lg:pb-24">
         <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <motion.div
@@ -581,8 +824,9 @@ function Home() {
             </p>
 
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-              <Button onClick={() => jumpTo('order')} className="w-full sm:w-auto">
-                Order on WhatsApp · {SELLING_PRICE} <ArrowUpRight size={16} />
+              <Button onClick={() => openCartWithColor()} className="w-full sm:w-auto">
+                <ShoppingCart size={16} />
+                Order on WhatsApp · {SELLING_PRICE}
               </Button>
               <Button variant="outline" onClick={() => jumpTo('showcase')} className="w-full sm:w-auto">
                 Watch Videos <ArrowDown size={16} />
@@ -616,7 +860,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 2. VIDEO SHOWCASE CAROUSEL (Mobile-Friendly with Clean Video View & Dedicated Controls Card) */}
+      {/* 2. VIDEO SHOWCASE CAROUSEL */}
       <section id="showcase" className="scroll-mt-20 border-y border-[#dbe6f5] bg-[#f1f6ff] py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
           <SectionIntro
@@ -640,7 +884,6 @@ function Home() {
             body="No manual scrubbing, no awkward angles, no sore gums."
           />
 
-          {/* 3 Steps Cards */}
           <div className="mt-8 sm:mt-12 grid gap-4 sm:gap-6 md:grid-cols-3">
             {[
               {
@@ -682,7 +925,6 @@ function Home() {
             })}
           </div>
 
-          {/* 4 Core Features */}
           <div id="features" className="scroll-mt-20 mt-14 sm:mt-20 pt-12 sm:pt-16 border-t border-[#dce6f5]">
             <SectionIntro
               kicker="Designed for Excellence"
@@ -768,14 +1010,14 @@ function Home() {
         </div>
       </section>
 
-      {/* 5. COLOR SELECTION & ORDER SECTION */}
+      {/* 5. COLOR SELECTION & INSTANT ORDER SECTION (Replaces cumbersome form with clean card & Side Cart trigger) */}
       <section id="order" className="scroll-mt-20 py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
           <SectionIntro
             center
             kicker="Direct Order"
             title="Choose Your Color & Order on WhatsApp"
-            body="Fast, manual order confirmation with free nationwide courier delivery."
+            body="Select your favorite edition below and click Order to view your cart and proceed instantly."
           />
 
           {/* Color Selector */}
@@ -804,14 +1046,14 @@ function Home() {
             ))}
           </div>
 
-          {/* Order Form & Package Details */}
-          <div className="mt-8 sm:mt-12 grid gap-8 lg:grid-cols-[1fr_1.2fr] max-w-5xl mx-auto">
+          {/* Clean Order Card (Replaces the form) */}
+          <div className="mt-8 sm:mt-12 grid gap-8 lg:grid-cols-[1fr_1.15fr] max-w-5xl mx-auto">
             {/* What's In The Box */}
-            <div className="rounded-2xl sm:rounded-3xl border border-[#d2e1f2] bg-[#f8fbff] p-5 sm:p-8 flex flex-col justify-between">
+            <div className="rounded-2xl sm:rounded-3xl border border-[#d2e1f2] bg-[#f8fbff] p-6 sm:p-8 flex flex-col justify-between">
               <div>
                 <span className="eyebrow text-[#2454d8]">Complete Package</span>
                 <h3 className="font-display mt-1.5 text-xl sm:text-2xl font-extrabold text-[#0c1d43]">What is In The Box</h3>
-                <div className="mt-5 space-y-2.5">
+                <div className="mt-5 space-y-3">
                   {[
                     '1 × Sonic Brush® V5 Unit',
                     '1 × Food-Grade Silicone Mouthpiece',
@@ -829,48 +1071,55 @@ function Home() {
 
               <div className="mt-6 sm:mt-8 border-t border-[#d2e1f2] pt-5">
                 <div className="flex items-baseline justify-between">
-                  <span className="text-xs sm:text-sm font-bold text-[#56749c]">Total Price:</span>
+                  <span className="text-xs sm:text-sm font-bold text-[#56749c]">Price Per Unit:</span>
                   <span className="font-display text-2xl sm:text-3xl font-extrabold text-[#0c1d43]">{SELLING_PRICE}</span>
                 </div>
-                <p className="mt-1 text-[11px] sm:text-xs font-semibold text-[#10b981]">✓ Free Delivery Nationwide · Verified Payment on WhatsApp</p>
+                <p className="mt-1 text-[11px] sm:text-xs font-semibold text-[#10b981]">✓ Free Nationwide Delivery Included</p>
               </div>
             </div>
 
-            {/* Quick Order Form */}
-            <form onSubmit={submitOrder} className="rounded-2xl sm:rounded-3xl border border-[#cbdcf5] bg-white p-5 sm:p-8 shadow-[0_8px_30px_rgba(20,50,110,.06)]">
-              <h3 className="font-display text-lg sm:text-xl font-extrabold text-[#0c1d43]">Enter Details for Quick Dispatch</h3>
-              <p className="mt-1 text-xs text-[#56749c]">Your pre-filled message will open directly in WhatsApp.</p>
+            {/* Instant Order Trigger Card */}
+            <div className="rounded-2xl sm:rounded-3xl border border-[#cbdcf5] bg-white p-6 sm:p-8 shadow-[0_12px_36px_rgba(20,50,110,.07)] flex flex-col justify-between">
+              <div>
+                <span className="eyebrow text-[#10b981]">Express Order</span>
+                <h3 className="font-display mt-1.5 text-xl sm:text-2xl font-extrabold text-[#0c1d43]">
+                  Ready to Order {selectedColor} Edition?
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-[#54739c] leading-relaxed">
+                  No lengthy forms needed. Click the button below to view your cart, choose quantity, and proceed directly to WhatsApp for instant confirmation.
+                </p>
 
-              <div className="mt-5 grid gap-3.5 sm:grid-cols-2">
-                <label className="block sm:col-span-2">
-                  <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-[#5d7770]">Full Name</span>
-                  <input required name="name" type="text" placeholder="Your name" className="h-11 w-full rounded-xl border border-[#cbdcee] bg-white px-3.5 text-base sm:text-sm text-[#10244c] outline-none focus:border-[#2454d8] focus:ring-2 focus:ring-[#2454d8]/20" />
-                </label>
-                <label className="block">
-                  <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-[#5d7770]">WhatsApp Number</span>
-                  <input required name="phone" type="tel" placeholder="+92 300 0000000" className="h-11 w-full rounded-xl border border-[#cbdcee] bg-white px-3.5 text-base sm:text-sm text-[#10244c] outline-none focus:border-[#2454d8] focus:ring-2 focus:ring-[#2454d8]/20" />
-                </label>
-                <label className="block">
-                  <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-[#5d7770]">City</span>
-                  <input required name="city" type="text" placeholder="e.g. Lahore, Karachi" className="h-11 w-full rounded-xl border border-[#cbdcee] bg-white px-3.5 text-base sm:text-sm text-[#10244c] outline-none focus:border-[#2454d8] focus:ring-2 focus:ring-[#2454d8]/20" />
-                </label>
-                <label className="block sm:col-span-2">
-                  <span className="mb-1 block text-xs font-bold uppercase tracking-wider text-[#5d7770]">Complete Delivery Address</span>
-                  <textarea required name="address" rows={2} placeholder="House/Flat #, Street, Area" className="w-full rounded-xl border border-[#cbdcee] bg-white p-3 text-base sm:text-sm text-[#10244c] outline-none focus:border-[#2454d8] focus:ring-2 focus:ring-[#2454d8]/20" />
-                </label>
-                <input type="hidden" name="color" value={selectedColor} />
-                <input type="hidden" name="quantity" value="1" />
+                {/* Selected Color Visual Confirmation */}
+                <div className="mt-6 flex items-center gap-4 rounded-xl border border-[#e2edf8] bg-[#f8fbff] p-3.5">
+                  <div className="size-14 shrink-0 overflow-hidden rounded-lg border border-[#cbdcee] bg-white p-1">
+                    <img
+                      src={colors.find((c) => c.name === selectedColor)?.image || blackProductImage}
+                      alt={selectedColor}
+                      className="size-full object-contain"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-display text-sm font-extrabold text-[#0c1d43]">Sonic Brush® V5 — {selectedColor}</p>
+                    <p className="text-xs font-bold text-[#2454d8]">{SELLING_PRICE} · In Stock</p>
+                  </div>
+                </div>
               </div>
 
-              <Button type="submit" className="mt-5 w-full">
-                Continue on WhatsApp <ArrowUpRight size={17} />
-              </Button>
-              {submitted && (
-                <p className="mt-2.5 text-center text-xs font-semibold text-[#10b981]">
-                  WhatsApp draft opened! Our team will confirm your order details.
+              <div className="mt-6 space-y-3">
+                <button
+                  type="button"
+                  onClick={() => openCartWithColor(selectedColor)}
+                  className="w-full flex items-center justify-center gap-2.5 rounded-full bg-[#2454d8] hover:bg-[#193fae] active:scale-[.98] py-4 px-6 text-sm font-bold text-white shadow-[0_8px_24px_rgba(36,84,216,.28)] transition-all"
+                >
+                  <ShoppingCart size={18} />
+                  <span>Order on WhatsApp (Open Cart)</span>
+                  <ArrowRight size={16} />
+                </button>
+                <p className="text-center text-[11px] text-[#6b85a8]">
+                  Free delivery across Pakistan · Order confirmed directly in WhatsApp
                 </p>
-              )}
-            </form>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -927,7 +1176,7 @@ function Home() {
             <button onClick={() => jumpTo('features')} className="hover:text-white transition-colors">Features</button>
             <button onClick={() => jumpTo('showcase')} className="hover:text-white transition-colors">Video Showcase</button>
             <button onClick={() => jumpTo('reviews')} className="hover:text-white transition-colors">Reviews</button>
-            <button onClick={() => jumpTo('order')} className="hover:text-white transition-colors">Order</button>
+            <button onClick={() => openCartWithColor()} className="hover:text-white transition-colors">Order (Cart)</button>
             <button onClick={() => jumpTo('faq')} className="hover:text-white transition-colors">FAQ</button>
           </div>
           <p className="text-[11px] sm:text-xs text-[#89aed9]">
@@ -936,7 +1185,7 @@ function Home() {
         </div>
       </footer>
 
-      {/* 8. FLOATING QUICK-ACTION BAR ON MOBILE (sm:hidden) */}
+      {/* 8. FLOATING QUICK-ACTION BAR ON MOBILE */}
       <div className="fixed bottom-0 inset-x-0 z-50 p-3 bg-white/95 backdrop-blur-md border-t border-[#d8e4f5] shadow-[0_-6px_20px_rgba(0,0,0,.08)] sm:hidden flex items-center justify-between gap-3">
         <div>
           <p className="font-display text-xs font-extrabold text-[#0c1d43] leading-tight">Sonic Brush® V5</p>
@@ -944,13 +1193,23 @@ function Home() {
         </div>
         <button
           type="button"
-          onClick={() => jumpTo('order')}
+          onClick={() => openCartWithColor()}
           className="inline-flex h-10 items-center justify-center gap-1.5 rounded-full bg-[#25d366] hover:bg-[#20bd5a] px-4 text-xs font-bold text-white shadow-[0_4px_12px_rgba(37,211,102,.35)] active:scale-95 transition-all"
         >
-          <MessageCircle size={15} />
-          Order Now
+          <ShoppingCart size={14} />
+          <span>View Cart</span>
         </button>
       </div>
+
+      {/* 9. SIDE CART DRAWER */}
+      <SideCartDrawer
+        isOpen={cartOpen}
+        onClose={() => setCartOpen(false)}
+        selectedColor={selectedColor}
+        onSelectColor={setSelectedColor}
+        quantity={quantity}
+        onUpdateQuantity={setQuantity}
+      />
     </main>
   );
 }
