@@ -21,7 +21,6 @@ import {
   ShieldCheck,
   Sparkles,
   X,
-  Zap,
 } from 'lucide-react';
 import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
 import whiteProductImage from '@assets/image_1789988953829.png';
@@ -35,7 +34,8 @@ import detailVideo from '@assets/1783936185762_wid_NmE1NGI0YjllYTBmNDdlYjYwNDcxO
 
 const queryClient = new QueryClient();
 const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || 'INSERT NUMBER';
-const SELLING_PRICE = import.meta.env.VITE_SELLING_PRICE || '[INSERT PRICE]';
+const SELLING_PRICE = 'PKR 25,000';
+const DELIVERY_OFFER = 'Delivery included — no additional charge';
 const colors = [
   { name: 'Black', image: blackProductImage, tint: '#10224a' },
   { name: 'White', image: whiteProductImage, tint: '#eaf1fb' },
@@ -47,12 +47,11 @@ const faqs = [
   ['How does the Sonic Brush® V5 work?', 'It uses sonic vibrations through a wrap-around mouthpiece design to simplify the brushing experience.'],
   ['How long is the brushing cycle?', 'The product is designed around a 30-second full-mouth brushing cycle.'],
   ['What colors are available?', 'Black, White, Pink and Blue, subject to current stock.'],
-  ['How do I order?', 'Click any Order on WhatsApp button and send your details. We will manually confirm availability and provide payment instructions.'],
+  ['How do I order?', 'Click any Order on WhatsApp button and send your details. We will confirm availability and provide payment instructions.'],
   ['Is COD available?', 'COD is currently not available. Orders are confirmed after payment verification.'],
   ['How do I pay?', 'After your order details are confirmed through WhatsApp, you will receive the available payment instructions.'],
   ['How many uses per charge?', 'The product information specifies up to 30 uses per charge. Actual battery performance can vary depending on usage.'],
   ['What comes in the box?', '1 Sonic Brush® V5, 1 USB charging cable, 1 charging station and 1 user manual, subject to the actual supplied package.'],
-  ['Is this an official Sonic Brush® store?', '[INSERT ACCURATE RESELLER / BRAND RELATIONSHIP STATEMENT]'],
 ];
 
 function whatsappMessage(message: string) {
@@ -62,7 +61,7 @@ function whatsappMessage(message: string) {
 }
 
 function orderMessage(color?: string) {
-  return `Hi, I'm interested in ordering the Sonic Brush® V5${color ? ` in ${color}` : ''}. Please confirm current stock, available colors, price and payment details.`;
+  return `Hi, I'd like to order the Sonic Brush® V5${color ? ` in ${color}` : ''}.\n\nUnit price: ${SELLING_PRICE}\nDelivery: included at no additional charge.\n\nPlease confirm availability and share payment instructions.`;
 }
 
 function Button({
@@ -92,12 +91,23 @@ function Button({
   );
 }
 
+function SonicMark({ inverted = false }: { inverted?: boolean }) {
+  const markColor = inverted ? '#28c7e7' : '#2454d8';
+  const waveColor = inverted ? '#10244c' : '#fbfcff';
+
+  return (
+    <svg aria-hidden="true" viewBox="0 0 40 40" className="size-9 shrink-0" fill="none">
+      <rect x="1" y="1" width="38" height="38" rx="13" fill={markColor} />
+      <path d="M8 22.5h4l2.7-8.5 3.8 14 3.7-17 2.4 8.5H32" stroke={waveColor} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9 29.5h22" stroke={waveColor} strokeOpacity=".45" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function Wordmark({ inverted = false }: { inverted?: boolean }) {
   return (
     <a href="#top" data-testid="link-wordmark" className="flex shrink-0 items-center gap-2.5">
-      <span className="grid size-8 place-items-center rounded-[11px] bg-[#2454d8] text-[#fbfcff]">
-        <Zap size={16} strokeWidth={2.5} />
-      </span>
+      <SonicMark inverted={inverted} />
       <span className={`font-display text-[.85rem] font-extrabold tracking-[-.04em] ${inverted ? 'text-[#f2f6ee]' : 'text-[#10244c]'}`}>SONIC BRUSH<span className="text-[#28c7e7]">®</span></span>
     </a>
   );
@@ -192,7 +202,7 @@ function Home() {
   const submitOrder = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    const message = `Hi! I want to order the Sonic Brush® V5.\n\nName: ${form.get('name') || ''}\nCity: ${form.get('city') || ''}\nAddress: ${form.get('address') || ''}\nPhone: ${form.get('phone') || ''}\nColor: ${form.get('color') || selectedColor}\nQuantity: ${form.get('quantity') || '1'}\n\nPlease confirm availability and payment details.`;
+    const message = `Hi! I want to order the Sonic Brush® V5.\n\nName: ${form.get('name') || ''}\nCity: ${form.get('city') || ''}\nAddress: ${form.get('address') || ''}\nPhone: ${form.get('phone') || ''}\nColor: ${form.get('color') || selectedColor}\nQuantity: ${form.get('quantity') || '1'}\n\nUnit price: ${SELLING_PRICE}\nDelivery: included at no additional charge.\n\nPlease confirm availability and share payment instructions.`;
     setSubmitted(true);
     whatsappMessage(message);
   };
@@ -205,6 +215,7 @@ function Home() {
           <nav className="hidden items-center gap-7 md:flex" aria-label="Primary navigation">
             <button data-testid="link-how-it-works" onClick={() => jumpTo('how-it-works')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8]">How it works</button>
             <button data-testid="link-features" onClick={() => jumpTo('features')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8]">Features</button>
+            <button data-testid="link-reviews" onClick={() => jumpTo('reviews')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8]">Reviews</button>
             <button data-testid="link-faq" onClick={() => jumpTo('faq')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8]">FAQ</button>
           </nav>
           <div className="flex items-center gap-2">
@@ -217,7 +228,7 @@ function Home() {
         </div>
         {menuOpen && (
           <nav className="border-t border-[#dbe5f5] px-5 py-4 md:hidden" aria-label="Mobile navigation">
-            {['how-it-works', 'features', 'faq'].map((item) => (
+            {['how-it-works', 'features', 'reviews', 'faq'].map((item) => (
               <button key={item} data-testid={`link-mobile-${item}`} onClick={() => jumpTo(item)} className="block w-full py-3 text-left text-sm font-bold capitalize text-[#315181]">{item.replaceAll('-', ' ')}</button>
             ))}
           </nav>
@@ -230,7 +241,7 @@ function Home() {
             <span className="size-1.5 rounded-full bg-[#28c7e7]" /> Limited stock available
           </div>
           <h1 className="max-w-2xl font-display text-[clamp(3.2rem,14vw,7.3rem)] font-extrabold leading-[.87] tracking-[-.085em] text-[#10244c]">Meet the <span className="text-[#2454d8]">smarter</span> way to brush.</h1>
-          <p className="mt-7 max-w-md text-lg leading-8 text-[#5d6f8b]">Full-mouth sonic cleaning in a simple, hands-free routine.</p>
+           <p className="mt-7 max-w-md text-lg leading-8 text-[#5d6f8b]">Full-mouth sonic cleaning in a simple, hands-free routine. {SELLING_PRICE} per unit, with delivery included at no additional charge.</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button testId="button-hero-order" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Order now on WhatsApp <ArrowUpRight size={17} /></Button>
             <Button testId="button-hero-demo" variant="outline" onClick={() => jumpTo('demo')}>See how it works <ArrowDown size={17} /></Button>
@@ -344,6 +355,31 @@ function Home() {
         </div>
       </section>
 
+      <section id="reviews" className="scroll-mt-24 border-y border-[#c8e1ec] bg-[#e9f8fc]">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+            <SectionIntro kicker="Customer reviews" title="A place for real customer voices." body="Verified seller-provided reviews can be added here as they become available." />
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#79bfd1] bg-white/65 px-3.5 py-2 text-[.66rem] font-bold uppercase tracking-[.14em] text-[#17627e]"><span className="size-1.5 rounded-full bg-[#f0a43c]" /> Demo / sample content</span>
+          </div>
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            {[
+              ['01', 'Routine', 'Demo placeholder — replace this card with a verified customer quote before publishing.'],
+              ['02', 'Product experience', 'Sample layout only. Add seller-provided review text here; no customer claim is being made yet.'],
+              ['03', 'Everyday use', 'Demo content — this slot is ready for an attributed, verified customer review.'],
+            ].map(([number, title, body]) => (
+              <article key={number} data-testid={`card-review-${number}`} className="flex min-h-56 flex-col justify-between rounded-[1.5rem] border border-[#b7dce8] bg-white/85 p-6 shadow-[0_14px_34px_rgba(30,99,128,.08)]">
+                <div className="flex items-center justify-between"><span className="font-mono text-xs text-[#4b9bb3]">REVIEW SLOT {number}</span><span className="rounded-full bg-[#e6f7fb] px-2.5 py-1 text-[.6rem] font-bold uppercase tracking-[.12em] text-[#17627e]">Demo</span></div>
+                <div>
+                  <h3 className="font-display text-xl font-extrabold tracking-[-.04em] text-[#123d63]">{title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#54768a]">{body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className="mt-6 text-xs font-semibold leading-5 text-[#4f7785]">These are sample placeholders, not verified customer testimonials. Replace them only with seller-supplied reviews and accurate attribution.</p>
+        </div>
+      </section>
+
       <section className="border-y border-[#d7e2f2] bg-[#f3f7ff]">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.15fr_.85fr] lg:items-center lg:px-12 lg:py-28">
           <div>
@@ -384,8 +420,8 @@ function Home() {
             </button>
           ))}
         </div>
-        <div className="mt-8 flex flex-col gap-4 rounded-[1.5rem] border border-[#b9d8ec] bg-[#eef8fc] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <div><p className="font-display text-lg font-extrabold text-[#10244c]">Ready for {selectedColor}?</p><p className="mt-1 text-sm text-[#5d6f8b]">Ask about availability, price and payment details.</p></div>
+         <div className="mt-8 flex flex-col gap-4 rounded-[1.5rem] border border-[#b9d8ec] bg-[#eef8fc] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+           <div><p className="font-display text-lg font-extrabold text-[#10244c]">Ready for {selectedColor}?</p><p className="mt-1 text-sm text-[#5d6f8b]">{SELLING_PRICE} per unit · {DELIVERY_OFFER}</p></div>
           <Button testId="button-selected-color-order" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Order this color <ArrowUpRight size={16} /></Button>
         </div>
       </section>
@@ -398,10 +434,10 @@ function Home() {
             <p className="mt-6 max-w-lg leading-7 text-[#cad8ef]">We currently have a limited quantity available. Once the available stock is sold, orders for this batch may close.</p>
           </div>
           <div className="rounded-[1.7rem] border border-[#3d5c9b] bg-[#172f63] p-6">
-            <div className="flex items-center justify-between"><span className="text-sm font-semibold text-[#d4e3fc]">Genuine batch status</span><span className="size-2 rounded-full bg-[#28c7e7]" /></div>
-            <div className="mt-7 border-b border-[#3d5c9b] pb-5"><p className="eyebrow text-[#8ddff1]">Limited batch price</p><p data-testid="text-configurable-price" className="mt-2 font-display text-2xl font-extrabold tracking-[-.04em] text-[#f6fbff]">PKR 25000</p></div>
+             <div className="flex items-center justify-between"><span className="text-sm font-semibold text-[#d4e3fc]">Current batch status</span><span className="size-2 rounded-full bg-[#28c7e7]" /></div>
+             <div className="mt-7 border-b border-[#3d5c9b] pb-5"><p className="eyebrow text-[#8ddff1]">Fixed price per unit</p><p data-testid="text-price" className="mt-2 font-display text-2xl font-extrabold tracking-[-.04em] text-[#f6fbff]">{SELLING_PRICE}</p><p className="mt-2 text-sm font-semibold text-[#bdebf3]">{DELIVERY_OFFER}</p></div>
             <div className="my-7 h-1.5 overflow-hidden rounded-full bg-[#3f5c98]"><div className="h-full w-[58%] rounded-full bg-[#28c7e7]" /></div>
-            <p className="text-xs leading-5 text-[#b9cae8]">No live stock counter is shown. Availability is confirmed manually through WhatsApp.</p>
+             <p className="text-xs leading-5 text-[#b9cae8]">No live stock counter is shown. Availability is confirmed manually through WhatsApp at the fixed offer above.</p>
             <Button testId="button-stock-check" variant="outline" className="mt-6 border-[#84d8ea] text-[#f6fbff] hover:bg-[#244886]" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Check availability <ArrowUpRight size={16} /></Button>
           </div>
         </div>
@@ -413,7 +449,7 @@ function Home() {
           {[
             ['01', 'Choose your color', 'Select Black, White, Pink or Blue.'],
             ['02', 'Message us on WhatsApp', 'Click the order button and send your order details.'],
-            ['03', 'Confirm availability', 'We manually confirm your selected variant, current price and delivery details.'],
+             ['03', 'Confirm availability', `Your fixed offer is ${SELLING_PRICE} per unit, with delivery included at no additional charge.`],
             ['04', 'Complete payment', 'After confirmation, payment instructions are provided through WhatsApp.'],
           ].map(([no, title, body]) => (
             <div key={no} className="rounded-[1.3rem] border border-[#d3e1d9] bg-[#f2f6f1] p-5">
@@ -423,7 +459,7 @@ function Home() {
             </div>
           ))}
         </div>
-        <p className="mt-6 text-xs leading-5 text-[#6b827c]">Orders are confirmed after payment is successfully verified.</p>
+         <p className="mt-6 text-xs leading-5 text-[#6b827c]">Orders are confirmed after payment is successfully verified. {SELLING_PRICE} per unit; delivery is included at no additional charge.</p>
       </section>
 
       <section className="bg-[#edf7ff]">
@@ -460,8 +496,8 @@ function Home() {
               </label>
             </div>
             <Button type="submit" testId="button-form-whatsapp" className="mt-6 w-full">Continue on WhatsApp <ArrowUpRight size={16} /></Button>
-            {submitted && <p data-testid="status-form-submitted" className="mt-3 text-center text-xs font-semibold text-[#237266]">Your message draft is ready in WhatsApp.</p>}
-            <p className="mt-4 text-center text-[.68rem] leading-5 text-[#82958f]">Availability, price and payment are manually confirmed. COD is currently not available.</p>
+             {submitted && <p data-testid="status-form-submitted" className="mt-3 text-center text-xs font-semibold text-[#237266]">Your WhatsApp draft is ready with {SELLING_PRICE} per unit and delivery included at no additional charge.</p>}
+             <p className="mt-4 text-center text-[.68rem] leading-5 text-[#82958f]">{SELLING_PRICE} per unit · {DELIVERY_OFFER}. Payment is shared through WhatsApp; COD is currently not available.</p>
           </form>
         </div>
       </section>
@@ -495,25 +531,20 @@ function Home() {
 
       <section className="bg-[#bdebf3]">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-12 lg:py-24">
-          <div><p className="eyebrow text-[#285d84]">Sonic Brush® V5</p><h2 className="mt-4 max-w-3xl font-display text-[clamp(2.6rem,9vw,6.5rem)] font-extrabold leading-[.9] tracking-[-.085em] text-[#10244c]">Ready to make your brushing routine simpler?</h2><p className="mt-5 text-[#4f688c]">Limited stock is currently available.</p></div>
-          <div className="shrink-0"><Button testId="button-final-order" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Order Sonic Brush® V5 on WhatsApp <ArrowUpRight size={17} /></Button><p className="mt-3 text-center text-[.68rem] font-semibold text-[#53698d]">Availability and payment are manually confirmed.</p></div>
+           <div><p className="eyebrow text-[#285d84]">Sonic Brush® V5</p><h2 className="mt-4 max-w-3xl font-display text-[clamp(2.6rem,9vw,6.5rem)] font-extrabold leading-[.9] tracking-[-.085em] text-[#10244c]">Ready to make your brushing routine simpler?</h2><p className="mt-5 text-[#4f688c]">{SELLING_PRICE} per unit · {DELIVERY_OFFER}</p></div>
+           <div className="shrink-0"><Button testId="button-final-order" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Order Sonic Brush® V5 on WhatsApp <ArrowUpRight size={17} /></Button><p className="mt-3 text-center text-[.68rem] font-semibold text-[#53698d]">Availability and payment are manually confirmed.</p></div>
         </div>
       </section>
 
       <footer className="bg-[#0c1d43] text-[#d5e1f4]">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[1fr_auto] lg:px-12">
-          <div><Wordmark inverted /><p className="mt-5 max-w-xs text-sm leading-6 text-[#a8bad9]">A simpler brushing routine, presented clearly. Seller details and policies can be added when verified.</p></div>
-          <div className="grid grid-cols-2 gap-x-10 gap-y-4 text-sm font-semibold text-[#d4e0f4] sm:grid-cols-3">
+           <div><Wordmark inverted /><p className="mt-5 max-w-xs text-sm leading-6 text-[#a8bad9]">A simpler brushing routine, with a fixed {SELLING_PRICE} offer and delivery included at no additional charge.</p></div>
+           <div className="grid grid-cols-2 content-start gap-x-10 gap-y-4 text-sm font-semibold text-[#d4e0f4]">
             <button data-testid="footer-order" onClick={() => whatsappMessage(orderMessage(selectedColor))} className="text-left hover:text-[#28c7e7]">Order via WhatsApp</button>
             <button data-testid="footer-faq" onClick={() => jumpTo('faq')} className="text-left hover:text-[#28c7e7]">FAQ</button>
-            <span className="text-[#829ac5]">Contact</span>
-            <span className="text-[#829ac5]">Shipping / Delivery Information</span>
-            <span className="text-[#829ac5]">Return / Refund Policy</span>
-            <span className="text-[#829ac5]">Privacy Policy</span>
-            <span className="text-[#829ac5]">Terms &amp; Conditions</span>
           </div>
         </div>
-        <div className="border-t border-[#29477e] px-5 py-5 text-center text-[.65rem] font-semibold uppercase tracking-[.14em] text-[#829ac5]">Configurable seller information • Update policies and relationship statement before publishing</div>
+         <div className="border-t border-[#29477e] px-5 py-5 text-center text-[.65rem] font-semibold uppercase tracking-[.14em] text-[#829ac5]">{DELIVERY_OFFER} · Orders handled through WhatsApp</div>
       </footer>
 
       <div className="fixed inset-x-0 bottom-0 z-20 border-t border-[#cbdcf2] bg-[#fbfcff]/95 p-3 backdrop-blur-lg sm:hidden">
