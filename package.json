@@ -8,7 +8,7 @@
     "dev:mockup": "npm --prefix artifacts/mockup-sandbox run dev",
     "dev:server": "npm --prefix artifacts/api-server run dev",
     "dev:all": "pnpm -r --if-present run dev",
-    "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "build": "pnpm run typecheck && pnpm -r --if-present run build && node -e \"const fs=require('fs'); if(fs.existsSync('artifacts/sonic-brush-v5/dist/public')) fs.cpSync('artifacts/sonic-brush-v5/dist/public', 'dist', {recursive:true});\"",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },
