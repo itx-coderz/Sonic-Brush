@@ -399,7 +399,7 @@ function Home() {
           </div>
           <div className="rounded-[1.7rem] border border-[#3d5c9b] bg-[#172f63] p-6">
             <div className="flex items-center justify-between"><span className="text-sm font-semibold text-[#d4e3fc]">Genuine batch status</span><span className="size-2 rounded-full bg-[#28c7e7]" /></div>
-            <div className="mt-7 border-b border-[#3d5c9b] pb-5"><p className="eyebrow text-[#8ddff1]">Limited batch price</p><p data-testid="text-configurable-price" className="mt-2 font-display text-2xl font-extrabold tracking-[-.04em] text-[#f6fbff]">PKR {SELLING_PRICE}</p></div>
+            <div className="mt-7 border-b border-[#3d5c9b] pb-5"><p className="eyebrow text-[#8ddff1]">Limited batch price</p><p data-testid="text-configurable-price" className="mt-2 font-display text-2xl font-extrabold tracking-[-.04em] text-[#f6fbff]">PKR 25000</p></div>
             <div className="my-7 h-1.5 overflow-hidden rounded-full bg-[#3f5c98]"><div className="h-full w-[58%] rounded-full bg-[#28c7e7]" /></div>
             <p className="text-xs leading-5 text-[#b9cae8]">No live stock counter is shown. Availability is confirmed manually through WhatsApp.</p>
             <Button testId="button-stock-check" variant="outline" className="mt-6 border-[#84d8ea] text-[#f6fbff] hover:bg-[#244886]" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Check availability <ArrowUpRight size={16} /></Button>
