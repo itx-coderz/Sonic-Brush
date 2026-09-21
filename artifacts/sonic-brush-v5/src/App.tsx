@@ -167,7 +167,7 @@ function Button({
       type={type}
       data-testid={testId}
       onClick={onClick}
-      className={`inline-flex min-h-12 select-none items-center justify-center gap-2 rounded-full px-6 text-sm font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2454d8] focus-visible:ring-offset-2 ${styles[variant]} ${className}`}
+      className={`inline-flex min-h-11 sm:min-h-12 select-none items-center justify-center gap-2 rounded-full px-5 sm:px-6 text-xs sm:text-sm font-bold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2454d8] focus-visible:ring-offset-2 ${styles[variant]} ${className}`}
     >
       {children}
     </motion.button>
@@ -189,7 +189,7 @@ function SonicMark({ inverted = false }: { inverted?: boolean }) {
 
 function Wordmark({ inverted = false }: { inverted?: boolean }) {
   return (
-    <a href="#top" data-testid="link-wordmark" className="flex shrink-0 items-center gap-2">
+    <a href="#top" data-testid="link-wordmark" className="flex shrink-0 items-center gap-2 select-none">
       <SonicMark inverted={inverted} />
       <span className={`font-display text-sm sm:text-base font-extrabold tracking-tight ${inverted ? 'text-[#f2f6ee]' : 'text-[#10244c]'}`}>
         SONIC BRUSH<span className="text-[#28c7e7]">®</span>
@@ -209,7 +209,7 @@ function SectionIntro({ kicker, title, body, light = false, center = false }: { 
 }
 
 /** 
- * Header Hero Video Player (Mobile Optimized)
+ * Header Hero Video Player (Clean, Responsive, Unobstructed)
  */
 function HeroVideoPlayer({ src, poster }: { src: string; poster: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -228,8 +228,8 @@ function HeroVideoPlayer({ src, poster }: { src: string; poster: string }) {
   };
 
   return (
-    <div className="relative isolate overflow-hidden rounded-2xl sm:rounded-[2.2rem] border border-[#cbdcf5] bg-[#0c1d43] shadow-[0_16px_48px_rgba(20,50,110,.18)]">
-      <div className="relative aspect-[16/11] sm:aspect-[4/3] w-full min-h-[250px]">
+    <div className="relative isolate overflow-hidden rounded-2xl sm:rounded-[2rem] border border-[#cbdcf5] bg-[#0c1d43] shadow-[0_16px_48px_rgba(20,50,110,.16)]">
+      <div className="relative aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] w-full">
         <video
           ref={videoRef}
           src={src}
@@ -242,46 +242,46 @@ function HeroVideoPlayer({ src, poster }: { src: string; poster: string }) {
           aria-label="Sonic Brush V5 Hero Demonstration"
           className="size-full object-cover object-center"
         />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07132f]/85 via-transparent to-[#102e6e]/20" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07132f]/80 via-transparent to-[#102e6e]/20" />
 
-        {/* Floating pulse badge */}
+        {/* Floating pulse badge top left */}
         <motion.div
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute left-3 top-3 sm:left-4 sm:top-4 flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/25 bg-[#091737]/85 px-2.5 sm:px-3.5 py-1 sm:py-1.5 backdrop-blur-md"
+          className="absolute left-3 top-3 sm:left-4 sm:top-4 flex items-center gap-1.5 rounded-full border border-white/25 bg-[#091737]/85 px-3 py-1 backdrop-blur-md"
         >
           <span className="relative flex size-2">
             <span className="absolute inline-flex size-full animate-ping rounded-full bg-[#28c7e7] opacity-75" />
             <span className="relative inline-flex size-2 rounded-full bg-[#28c7e7]" />
           </span>
-          <span className="font-mono text-[.6rem] sm:text-[.66rem] font-bold uppercase tracking-wider text-[#d4ecff]">
+          <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#d4ecff]">
             360° Sonic Clean
           </span>
         </motion.div>
 
-        {/* Floating time badge */}
+        {/* Floating time badge top right */}
         <motion.div
           animate={{ y: [0, 4, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-          className="absolute right-3 top-3 sm:right-4 sm:top-4 rounded-full border border-white/20 bg-white/15 px-2.5 sm:px-3 py-1 font-mono text-[.6rem] sm:text-[.64rem] font-bold text-white backdrop-blur-md"
+          className="absolute right-3 top-3 sm:right-4 sm:top-4 rounded-full border border-white/20 bg-white/15 px-2.5 sm:px-3 py-1 font-mono text-[10px] sm:text-xs font-bold text-white backdrop-blur-md"
         >
           30 SECONDS
         </motion.div>
 
-        {/* Play/Pause Button & Caption */}
-        <div className="absolute inset-x-3 sm:inset-x-5 bottom-3 sm:bottom-5 flex items-end justify-between gap-3">
-          <div>
-            <p className="font-display text-sm sm:text-lg font-extrabold text-white">Sonic Brush® V5</p>
-            <p className="text-[11px] sm:text-xs text-[#a9c9f4]">Wrap-around mouthpiece in action</p>
+        {/* Bottom Bar on video */}
+        <div className="absolute inset-x-3 sm:inset-x-5 bottom-3 sm:bottom-4 flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="font-display text-xs sm:text-base font-extrabold text-white truncate">Sonic Brush® V5</p>
+            <p className="text-[10px] sm:text-xs text-[#a9c9f4] truncate">Wrap-around mouthpiece in action</p>
           </div>
           <button
             type="button"
             data-testid="hero-play-pause"
             onClick={toggle}
-            className="grid size-10 sm:size-12 shrink-0 place-items-center rounded-full bg-[#28c7e7] text-[#07132f] shadow-[0_6px_20px_rgba(40,199,231,.35)] transition-transform hover:scale-105 active:scale-95"
+            className="grid size-9 sm:size-11 shrink-0 place-items-center rounded-full bg-[#28c7e7] text-[#07132f] shadow-[0_4px_16px_rgba(40,199,231,.4)] transition-transform hover:scale-105 active:scale-95"
+            aria-label={isPlaying ? 'Pause' : 'Play'}
           >
-            {isPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" />}
-            <span className="sr-only">{isPlaying ? 'Pause' : 'Play'}</span>
+            {isPlaying ? <Pause size={15} fill="currentColor" /> : <Play size={15} fill="currentColor" />}
           </button>
         </div>
       </div>
@@ -290,7 +290,7 @@ function HeroVideoPlayer({ src, poster }: { src: string; poster: string }) {
 }
 
 /**
- * Mobile-Responsive Video Showcase Carousel
+ * Mobile-Responsive Video Showcase Carousel (With Clear Video Frame & Dedicated Info/Controls Card Below)
  */
 function VideoCarousel() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -330,35 +330,35 @@ function VideoCarousel() {
   }, [activeIdx]);
 
   return (
-    <div className="relative mx-auto max-w-5xl">
-      {/* Horizontally scrollable tabs on mobile, centered on desktop */}
-      <div className="mb-4 sm:mb-6 flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-2 px-1 scrollbar-none">
+    <div className="relative mx-auto max-w-4xl">
+      {/* Category Tabs: Centered and responsive */}
+      <div className="mb-5 sm:mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
         {showcaseVideos.map((item, idx) => (
           <button
             key={item.id}
             onClick={() => setActiveIdx(idx)}
-            className={`group shrink-0 inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs font-bold transition-all ${
+            className={`group inline-flex items-center gap-1.5 sm:gap-2 rounded-full px-3.5 py-1.5 sm:px-5 sm:py-2 text-xs sm:text-sm font-bold transition-all ${
               activeIdx === idx
-                ? 'bg-[#2454d8] text-white shadow-[0_4px_16px_rgba(36,84,216,.28)]'
-                : 'border border-[#c5d8f0] bg-white/90 text-[#3d5985] hover:border-[#2454d8] hover:bg-[#eef4ff]'
+                ? 'bg-[#2454d8] text-white shadow-[0_6px_20px_rgba(36,84,216,.28)]'
+                : 'border border-[#c5d8f0] bg-white text-[#3d5985] hover:border-[#2454d8] hover:bg-[#eef4ff]'
             }`}
           >
-            <span className={`size-1.5 rounded-full ${activeIdx === idx ? 'bg-[#28c7e7]' : 'bg-[#9cb6d8]'}`} />
+            <span className={`size-2 rounded-full ${activeIdx === idx ? 'bg-[#28c7e7]' : 'bg-[#9cb6d8]'}`} />
             {item.tag}
           </button>
         ))}
       </div>
 
-      {/* Main Carousel Screen */}
-      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[#cbdcf5] bg-[#0c1d43] shadow-[0_16px_40px_rgba(16,40,90,.14)]">
+      {/* Main Video Screen with Clean Overlays */}
+      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-[#cbdcf5] bg-[#0c1d43] shadow-[0_16px_40px_rgba(16,40,90,.12)]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeVideo.id}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.3 }}
-            className="relative aspect-[16/10] sm:aspect-video w-full min-h-[250px] sm:min-h-[400px]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="relative aspect-[16/10] sm:aspect-video w-full"
           >
             <video
               ref={videoRef}
@@ -370,68 +370,87 @@ function VideoCarousel() {
               loop
               className="size-full object-cover object-center"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#061026]/90 via-transparent to-[#0a1e48]/30" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#061026]/75 via-transparent to-[#0a1e48]/20" />
 
-            {/* Top Tag & Slide Counter */}
+            {/* Top Bar: Tag & Slide Counter */}
             <div className="absolute inset-x-3.5 sm:inset-x-5 top-3.5 sm:top-5 flex items-center justify-between text-white">
-              <span className="rounded-full border border-white/25 bg-black/45 px-2.5 sm:px-3.5 py-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+              <span className="rounded-full border border-white/25 bg-black/50 px-3 py-1 text-[11px] sm:text-xs font-bold uppercase tracking-wider backdrop-blur-md">
                 {activeVideo.tag}
               </span>
-              <span className="rounded-full bg-white/20 px-2.5 sm:px-3 py-0.5 sm:py-1 font-mono text-[10px] sm:text-xs font-semibold backdrop-blur-md">
+              <span className="rounded-full bg-black/40 px-2.5 sm:px-3 py-1 font-mono text-[11px] sm:text-xs font-semibold backdrop-blur-md">
                 {activeIdx + 1} / {showcaseVideos.length}
               </span>
             </div>
 
-            {/* Bottom Controls & Info */}
-            <div className="absolute inset-x-3.5 sm:inset-x-5 bottom-3.5 sm:bottom-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-              <div className="max-w-xl text-white">
-                <h3 className="font-display text-base font-extrabold tracking-tight sm:text-2xl">{activeVideo.title}</h3>
-                <p className="mt-1 text-[11px] leading-snug text-[#bad2f5] line-clamp-2 sm:text-sm sm:line-clamp-none">{activeVideo.description}</p>
-              </div>
-              <div className="flex items-center justify-between sm:justify-end gap-2 shrink-0">
-                <button
-                  type="button"
-                  onClick={togglePlay}
-                  className="grid size-9 sm:size-11 place-items-center rounded-full bg-[#28c7e7] text-[#07132f] shadow-[0_4px_14px_rgba(40,199,231,.4)] transition-transform hover:scale-105 active:scale-95"
-                >
-                  {isPlaying ? <Pause size={15} fill="currentColor" /> : <Play size={15} fill="currentColor" />}
-                </button>
-                <div className="flex items-center gap-1 rounded-full border border-white/20 bg-black/40 p-1 backdrop-blur-md">
-                  <button
-                    type="button"
-                    onClick={handlePrev}
-                    aria-label="Previous video"
-                    className="grid size-7 sm:size-9 place-items-center rounded-full text-white transition-colors hover:bg-white/20"
-                  >
-                    <ChevronLeft size={16} />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleNext}
-                    aria-label="Next video"
-                    className="grid size-7 sm:size-9 place-items-center rounded-full text-white transition-colors hover:bg-white/20"
-                  >
-                    <ChevronRight size={16} />
-                  </button>
-                </div>
-              </div>
+            {/* Bottom Play Button Overlay */}
+            <div className="absolute inset-x-3.5 sm:inset-x-5 bottom-3.5 sm:bottom-4 flex items-center justify-between">
+              <span className="rounded-full bg-black/50 px-3 py-1 text-[11px] sm:text-xs font-semibold text-[#c8dcfa] backdrop-blur-md hidden sm:inline-block">
+                Press to {isPlaying ? 'pause' : 'play'}
+              </span>
+              <button
+                type="button"
+                onClick={togglePlay}
+                className="ml-auto grid size-10 sm:size-12 place-items-center rounded-full bg-[#28c7e7] text-[#07132f] shadow-[0_4px_16px_rgba(40,199,231,.4)] transition-transform hover:scale-105 active:scale-95"
+                aria-label={isPlaying ? 'Pause' : 'Play'}
+              >
+                {isPlaying ? <Pause size={17} fill="currentColor" /> : <Play size={17} fill="currentColor" />}
+              </button>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Dot Indicators */}
-      <div className="mt-4 flex items-center justify-center gap-1.5 sm:gap-2">
-        {showcaseVideos.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setActiveIdx(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 ${
-              activeIdx === i ? 'w-6 sm:w-8 bg-[#2454d8]' : 'w-1.5 sm:w-2 bg-[#b7cde6] hover:bg-[#86a8d3]'
-            }`}
-          />
-        ))}
+      {/* Video Details Card & Navigation Controls (Separated from the video screen so it never covers the video!) */}
+      <div className="mt-4 rounded-2xl border border-[#d2e1f2] bg-white p-4 sm:p-6 shadow-[0_8px_24px_rgba(20,50,110,.05)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs font-bold text-[#2454d8] uppercase">VIDEO {activeIdx + 1}</span>
+            <span className="text-[#9bb3d3]">·</span>
+            <span className="text-xs font-semibold text-[#54739c]">{activeVideo.tag}</span>
+          </div>
+          <h3 className="font-display mt-1 text-base sm:text-xl font-extrabold text-[#0c1d43] leading-snug">
+            {activeVideo.title}
+          </h3>
+          <p className="mt-1 text-xs sm:text-sm leading-relaxed text-[#567298]">
+            {activeVideo.description}
+          </p>
+        </div>
+
+        {/* Carousel Navigation Buttons & Dots */}
+        <div className="flex items-center justify-between sm:justify-end gap-3 pt-3 sm:pt-0 border-t sm:border-t-0 border-[#edf3fb] shrink-0">
+          {/* Progress dots */}
+          <div className="flex items-center gap-1.5">
+            {showcaseVideos.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIdx(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeIdx === i ? 'w-6 bg-[#2454d8]' : 'w-2 bg-[#b7cde6] hover:bg-[#86a8d3]'
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous video"
+              className="grid size-10 place-items-center rounded-full border border-[#cbdcf5] bg-[#f8fbff] text-[#19356e] transition-all hover:bg-[#2454d8] hover:text-white hover:border-[#2454d8] active:scale-95 shadow-xs"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next video"
+              className="grid size-10 place-items-center rounded-full border border-[#cbdcf5] bg-[#f8fbff] text-[#19356e] transition-all hover:bg-[#2454d8] hover:text-white hover:border-[#2454d8] active:scale-95 shadow-xs"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -472,11 +491,13 @@ function Home() {
         </span>
       </div>
 
-      {/* Sticky Header Navbar */}
+      {/* Sticky Header Navbar (Proper lg breakpoint to prevent tablet collision) */}
       <header className="sticky top-0 z-40 border-b border-[#d8e4f5] bg-[#fbfcff]/95 backdrop-blur-md">
         <div className="mx-auto flex h-16 sm:h-20 max-w-7xl items-center justify-between px-4 sm:px-8 lg:px-12">
           <Wordmark />
-          <nav className="hidden items-center gap-6 md:flex" aria-label="Primary navigation">
+
+          {/* Desktop Navigation (visible on lg: 1024px+) */}
+          <nav className="hidden items-center gap-6 xl:gap-8 lg:flex" aria-label="Primary navigation">
             <button onClick={() => jumpTo('how-it-works')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">How it works</button>
             <button onClick={() => jumpTo('features')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">Features</button>
             <button onClick={() => jumpTo('showcase')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">Video Showcase</button>
@@ -484,44 +505,63 @@ function Home() {
             <button onClick={() => jumpTo('order')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">Order Now</button>
             <button onClick={() => jumpTo('faq')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8] transition-colors">FAQ</button>
           </nav>
-          <div className="hidden sm:block">
-            <Button onClick={() => jumpTo('order')} className="!min-h-10 !px-5 text-xs">
-              Order on WhatsApp <ArrowUpRight size={15} />
+
+          {/* Right Action: CTA & Mobile Hamburger Menu */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Button onClick={() => jumpTo('order')} className="!min-h-9 sm:!min-h-10 !px-3.5 sm:!px-5 text-xs">
+              Order Now <ArrowUpRight size={14} />
             </Button>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="grid size-9 sm:size-10 place-items-center rounded-full border border-[#c2d3ed] text-[#19356e] lg:hidden active:bg-[#edf3ff] shrink-0"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? <X size={18} /> : <Menu size={18} />}
+            </button>
           </div>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="grid size-10 place-items-center rounded-full border border-[#c2d3ed] text-[#19356e] md:hidden active:bg-[#edf3ff]"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={19} /> : <Menu size={19} />}
-          </button>
         </div>
-        {menuOpen && (
-          <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="border-t border-[#dbe5f5] bg-[#fbfcff] px-5 py-4 md:hidden shadow-lg"
-            aria-label="Mobile navigation"
-          >
-            {['how-it-works', 'features', 'showcase', 'reviews', 'order', 'faq'].map((item) => (
-              <button
-                key={item}
-                onClick={() => jumpTo(item)}
-                className="block w-full py-2.5 text-left text-sm font-bold capitalize text-[#315181] active:text-[#2454d8]"
-              >
-                {item.replaceAll('-', ' ')}
-              </button>
-            ))}
-            <Button onClick={() => jumpTo('order')} className="mt-3 w-full">
-              Order on WhatsApp <ArrowUpRight size={16} />
-            </Button>
-          </motion.nav>
-        )}
+
+        {/* Mobile & Tablet Dropdown Navigation with AnimatePresence */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.nav
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
+              className="border-t border-[#dbe5f5] bg-[#fbfcff]/98 backdrop-blur-xl px-4 sm:px-6 py-4 lg:hidden shadow-xl"
+              aria-label="Mobile navigation"
+            >
+              <div className="grid gap-1">
+                {[
+                  { id: 'how-it-works', label: 'How It Works' },
+                  { id: 'features', label: 'Features' },
+                  { id: 'showcase', label: 'Video Showcase' },
+                  { id: 'reviews', label: 'Customer Reviews' },
+                  { id: 'order', label: 'Select Color & Order' },
+                  { id: 'faq', label: 'Frequently Asked Questions' },
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => jumpTo(item.id)}
+                    className="flex items-center justify-between rounded-xl px-4 py-3 text-left text-sm font-bold text-[#19356e] hover:bg-[#edf4ff] active:bg-[#e2edff] transition-colors"
+                  >
+                    <span>{item.label}</span>
+                    <ChevronRight size={16} className="text-[#8ba7d6]" />
+                  </button>
+                ))}
+              </div>
+              <div className="mt-3 pt-3 border-t border-[#e3edf7]">
+                <Button onClick={() => jumpTo('order')} className="w-full !min-h-11 text-xs">
+                  Order on WhatsApp · {SELLING_PRICE} <ArrowUpRight size={15} />
+                </Button>
+              </div>
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </header>
 
-      {/* 1. HERO SECTION (Features 1 video in header, mobile optimized) */}
+      {/* 1. HERO SECTION (1 premier video in header, responsive) */}
       <section className="relative mx-auto max-w-7xl px-4 pt-8 pb-14 sm:px-8 sm:pt-16 sm:pb-20 lg:px-12 lg:pt-20 lg:pb-24">
         <div className="grid gap-8 sm:gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <motion.div
@@ -533,7 +573,7 @@ function Home() {
               <Sparkles size={13} className="text-[#2454d8]" />
               Sonic Brush® V5 — Pakistan Edition
             </div>
-            <h1 className="font-display mt-4 sm:mt-6 text-[clamp(2.1rem,7.5vw,4.2rem)] font-extrabold leading-[1.04] tracking-tight text-[#0c1d43]">
+            <h1 className="font-display mt-4 sm:mt-6 text-[clamp(2rem,7vw,4.2rem)] font-extrabold leading-[1.04] tracking-tight text-[#0c1d43]">
               Brush every tooth in 30 seconds.
             </h1>
             <p className="mt-4 sm:mt-6 max-w-lg text-sm sm:text-base leading-relaxed text-[#4b6389]">
@@ -576,7 +616,7 @@ function Home() {
         </div>
       </section>
 
-      {/* 2. VIDEO SHOWCASE CAROUSEL (Mobile Optimized) */}
+      {/* 2. VIDEO SHOWCASE CAROUSEL (Mobile-Friendly with Clean Video View & Dedicated Controls Card) */}
       <section id="showcase" className="scroll-mt-20 border-y border-[#dbe6f5] bg-[#f1f6ff] py-14 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
           <SectionIntro
@@ -738,7 +778,7 @@ function Home() {
             body="Fast, manual order confirmation with free nationwide courier delivery."
           />
 
-          {/* Color Selector: 2 columns on small screens, 4 on desktop */}
+          {/* Color Selector */}
           <div className="mt-8 sm:mt-12 grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-4 max-w-4xl mx-auto">
             {colors.map((color) => (
               <motion.button
@@ -796,7 +836,7 @@ function Home() {
               </div>
             </div>
 
-            {/* Quick Order Form (text-base on inputs avoids mobile auto-zoom!) */}
+            {/* Quick Order Form */}
             <form onSubmit={submitOrder} className="rounded-2xl sm:rounded-3xl border border-[#cbdcf5] bg-white p-5 sm:p-8 shadow-[0_8px_30px_rgba(20,50,110,.06)]">
               <h3 className="font-display text-lg sm:text-xl font-extrabold text-[#0c1d43]">Enter Details for Quick Dispatch</h3>
               <p className="mt-1 text-xs text-[#56749c]">Your pre-filled message will open directly in WhatsApp.</p>
