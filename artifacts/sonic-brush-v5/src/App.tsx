@@ -509,187 +509,151 @@ function SideCartDrawer({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 overflow-hidden">
-          {/* Backdrop */}
+        <div className="fixed inset-0 z-50 overflow-hidden flex justify-end">
+          {/* Backdrop overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 bg-[#07132f]/60 backdrop-blur-xs"
+            className="fixed inset-0 bg-black/50 backdrop-blur-xs"
           />
 
-          {/* Drawer Slide-in */}
-          <div className="fixed inset-y-0 right-0 flex max-w-full pl-10">
-            <motion.aside
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 30, stiffness: 320 }}
-              className="flex w-screen max-w-md flex-col bg-white shadow-2xl"
-            >
-              {/* Cart Header */}
-              <div className="flex items-center justify-between border-b border-[#e2edf8] px-5 py-4 sm:px-6">
-                <div className="flex items-center gap-2.5">
-                  <div className="grid size-9 place-items-center rounded-xl bg-[#eef5ff] text-[#2454d8]">
-                    <ShoppingBag size={18} />
-                  </div>
+          {/* Clean Responsive Drawer */}
+          <motion.aside
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+            className="relative z-10 flex h-full max-h-dvh w-full sm:w-[400px] max-w-full flex-col bg-white shadow-2xl"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-[#e2edf8] px-4 py-3.5 sm:px-5 shrink-0">
+              <div className="flex items-center gap-2">
+                <ShoppingCart size={18} className="text-[#2454d8]" />
+                <h2 className="font-display text-base font-bold text-[#0c1d43]">Your Cart</h2>
+                <span className="rounded-full bg-[#eef5ff] px-2 py-0.5 text-xs font-bold text-[#2454d8]">
+                  {quantity} {quantity === 1 ? 'item' : 'items'}
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={onClose}
+                className="grid size-8 place-items-center rounded-full text-[#6d84a7] hover:bg-[#f1f6fc] hover:text-[#0c1d43] transition-colors"
+                aria-label="Close cart"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {/* Simple Body */}
+            <div className="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
+              {/* Product Card */}
+              <div className="flex gap-3.5 rounded-xl border border-[#e2edf8] bg-[#f8fbff] p-3.5">
+                {/* Thumbnail */}
+                <div className="size-20 shrink-0 overflow-hidden rounded-lg border border-[#cbdcee] bg-white p-1">
+                  <img src={currentColorObj.image} alt={currentColorObj.name} className="size-full object-contain" />
+                </div>
+
+                {/* Details */}
+                <div className="flex flex-1 flex-col justify-between min-w-0">
                   <div>
-                    <h2 className="font-display text-base font-extrabold text-[#0c1d43]">Your Order Cart</h2>
-                    <p className="text-xs text-[#5c779c]">Sonic Brush® V5 Pakistan</p>
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="grid size-9 place-items-center rounded-full text-[#6d84a7] hover:bg-[#f1f6fc] hover:text-[#0c1d43] transition-colors"
-                  aria-label="Close cart"
-                >
-                  <X size={20} />
-                </button>
-              </div>
-
-              {/* Cart Body */}
-              <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-6 space-y-6">
-                {/* Product Card */}
-                <div className="rounded-2xl border border-[#d2e1f2] bg-[#f8fbff] p-4 sm:p-5">
-                  <div className="flex gap-4">
-                    <div className="size-20 sm:size-24 shrink-0 overflow-hidden rounded-xl border border-[#cbdcee] bg-white p-1.5 shadow-2xs">
-                      <img src={currentColorObj.image} alt={currentColorObj.name} className="size-full object-contain" />
+                    <div className="flex items-start justify-between gap-1">
+                      <h3 className="font-display text-sm font-bold text-[#0c1d43] truncate">
+                        Sonic Brush® V5
+                      </h3>
+                      <span className="font-display text-sm font-extrabold text-[#2454d8] shrink-0">
+                        {formatPrice(quantity)}
+                      </span>
                     </div>
+                    <p className="text-xs text-[#5c779c]">Color: <span className="font-semibold text-[#0c1d43]">{selectedColor}</span></p>
+                  </div>
 
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-start justify-between gap-2">
-                        <div>
-                          <h3 className="font-display text-sm sm:text-base font-extrabold text-[#0c1d43] leading-tight">
-                            Sonic Brush® V5
-                          </h3>
-                          <p className="text-xs text-[#58759d]">360° Sonic Toothbrush</p>
-                        </div>
-                        <span className="font-display text-sm font-extrabold text-[#2454d8]">
-                          {formatPrice(quantity)}
-                        </span>
-                      </div>
+                  {/* Compact Color Dots */}
+                  <div className="mt-2 flex items-center gap-2">
+                    {colors.map((c) => (
+                      <button
+                        key={c.name}
+                        type="button"
+                        onClick={() => onSelectColor(c.name)}
+                        title={c.name}
+                        className={`size-6 rounded-full border-2 transition-transform active:scale-90 ${
+                          selectedColor === c.name
+                            ? 'border-[#2454d8] scale-110 shadow-xs ring-2 ring-[#2454d8]/30'
+                            : 'border-white hover:scale-105 shadow-2xs'
+                        }`}
+                        style={{ backgroundColor: c.hex }}
+                        aria-label={`Select ${c.name}`}
+                      />
+                    ))}
+                  </div>
 
-                      {/* Color Pill Badges inside Cart */}
-                      <div className="mt-3">
-                        <span className="text-[11px] font-bold text-[#56749c]">Color: <span className="text-[#0c1d43]">{selectedColor}</span></span>
-                        <div className="mt-1.5 flex items-center gap-1.5">
-                          {colors.map((c) => (
-                            <button
-                              key={c.name}
-                              type="button"
-                              onClick={() => onSelectColor(c.name)}
-                              className={`group flex items-center gap-1 rounded-lg border px-2 py-1 text-[11px] font-semibold transition-all ${
-                                selectedColor === c.name
-                                  ? 'border-[#2454d8] bg-[#eaf1ff] text-[#2454d8] ring-1 ring-[#2454d8]'
-                                  : 'border-[#cbdcee] bg-white text-[#4b668d] hover:border-[#86a8e0]'
-                              }`}
-                            >
-                              <span className="size-2 rounded-full border border-black/10" style={{ backgroundColor: c.hex }} />
-                              <span>{c.name}</span>
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Quantity Selector Stepper */}
-                      <div className="mt-4 flex items-center justify-between border-t border-[#e2edf8] pt-3">
-                        <span className="text-xs font-semibold text-[#5a769e]">Quantity:</span>
-                        <div className="flex items-center gap-2 rounded-full border border-[#cbdcee] bg-white px-2 py-1 shadow-2xs">
-                          <button
-                            type="button"
-                            onClick={() => onUpdateQuantity(Math.max(1, quantity - 1))}
-                            disabled={quantity <= 1}
-                            className="grid size-6 place-items-center rounded-full text-[#385987] hover:bg-[#edf4ff] disabled:opacity-30"
-                            aria-label="Decrease quantity"
-                          >
-                            <Minus size={13} />
-                          </button>
-                          <span className="font-mono text-xs font-bold text-[#0c1d43] w-4 text-center">{quantity}</span>
-                          <button
-                            type="button"
-                            onClick={() => onUpdateQuantity(Math.min(10, quantity + 1))}
-                            disabled={quantity >= 10}
-                            className="grid size-6 place-items-center rounded-full text-[#385987] hover:bg-[#edf4ff] disabled:opacity-30"
-                            aria-label="Increase quantity"
-                          >
-                            <Plus size={13} />
-                          </button>
-                        </div>
-                      </div>
+                  {/* Quantity Stepper */}
+                  <div className="mt-3 flex items-center justify-between pt-2 border-t border-[#e8f0fa]">
+                    <span className="text-xs font-medium text-[#5c779c]">Quantity:</span>
+                    <div className="flex items-center gap-2 rounded-lg border border-[#cbdcee] bg-white px-2 py-0.5 shadow-2xs">
+                      <button
+                        type="button"
+                        onClick={() => onUpdateQuantity(Math.max(1, quantity - 1))}
+                        disabled={quantity <= 1}
+                        className="grid size-5 place-items-center text-[#385987] hover:text-[#0c1d43] disabled:opacity-30"
+                        aria-label="Decrease quantity"
+                      >
+                        <Minus size={12} />
+                      </button>
+                      <span className="w-5 text-center font-mono text-xs font-bold text-[#0c1d43]">{quantity}</span>
+                      <button
+                        type="button"
+                        onClick={() => onUpdateQuantity(Math.min(10, quantity + 1))}
+                        disabled={quantity >= 10}
+                        className="grid size-5 place-items-center text-[#385987] hover:text-[#0c1d43] disabled:opacity-30"
+                        aria-label="Increase quantity"
+                      >
+                        <Plus size={12} />
+                      </button>
                     </div>
                   </div>
                 </div>
-
-                {/* Package Inclusions Checklist */}
-                <div className="rounded-xl border border-[#dce7f5] bg-white p-4">
-                  <p className="text-xs font-bold text-[#0c1d43] uppercase tracking-wider">Package Includes:</p>
-                  <ul className="mt-2.5 space-y-2 text-xs text-[#526f95]">
-                    <li className="flex items-center gap-2">
-                      <Check size={14} className="text-[#10b981] shrink-0" />
-                      <span>1 × Sonic Brush® V5 ({selectedColor})</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check size={14} className="text-[#10b981] shrink-0" />
-                      <span>1 × Food-grade silicone mouthpiece</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check size={14} className="text-[#10b981] shrink-0" />
-                      <span>1 × Magnetic induction charging dock</span>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <Check size={14} className="text-[#10b981] shrink-0" />
-                      <span>1 × Fast USB charging cable + manual</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Trust Highlights */}
-                <div className="rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] p-3.5 flex items-start gap-3">
-                  <ShieldCheck size={18} className="text-[#059669] shrink-0 mt-0.5" />
-                  <div className="text-xs text-[#065f46]">
-                    <p className="font-bold">100% Free Nationwide Delivery</p>
-                    <p className="mt-0.5 text-[#047857]">Payment and delivery address are verified safely through WhatsApp before dispatch.</p>
-                  </div>
-                </div>
               </div>
 
-              {/* Cart Footer */}
-              <div className="border-t border-[#e2edf8] bg-[#f8fbff] p-5 sm:p-6 space-y-4">
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between text-xs text-[#5a769e]">
-                    <span>Item Subtotal ({quantity} unit{quantity > 1 ? 's' : ''})</span>
-                    <span className="font-mono font-semibold text-[#0c1d43]">{formatPrice(quantity)}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs text-[#5a769e]">
-                    <span>Nationwide Delivery</span>
-                    <span className="font-bold text-[#10b981] uppercase tracking-wider">FREE</span>
-                  </div>
-                  <div className="border-t border-[#dce7f5] pt-2 flex items-baseline justify-between">
-                    <span className="text-sm font-extrabold text-[#0c1d43]">Estimated Total</span>
-                    <span className="font-display text-xl font-extrabold text-[#2454d8]">{formatPrice(quantity)}</span>
-                  </div>
-                </div>
-
-                {/* WhatsApp Checkout Button */}
-                <button
-                  type="button"
-                  onClick={handleCheckout}
-                  className="w-full flex items-center justify-center gap-2.5 rounded-full bg-[#25d366] hover:bg-[#20ba59] active:scale-[.98] py-3.5 px-6 text-sm font-bold text-white shadow-[0_8px_24px_rgba(37,211,102,.35)] transition-all"
-                >
-                  <MessageCircle size={18} />
-                  <span>Proceed to WhatsApp Checkout</span>
-                  <ArrowRight size={16} />
-                </button>
-
-                <p className="text-center text-[11px] text-[#6b85a8]">
-                  Clicking opens a ready pre-filled message with your order summary.
-                </p>
+              {/* Free Delivery Banner */}
+              <div className="flex items-center gap-2 rounded-lg bg-[#ecfdf5] border border-[#a7f3d0] px-3 py-2 text-xs text-[#065f46]">
+                <Check size={14} className="text-[#059669] shrink-0" />
+                <span><strong>Free Delivery</strong> anywhere across Pakistan</span>
               </div>
-            </motion.aside>
-          </div>
+            </div>
+
+            {/* Simple Sticky Footer */}
+            <div className="border-t border-[#e2edf8] bg-white p-4 sm:p-5 space-y-3 shrink-0">
+              <div className="flex items-center justify-between text-xs text-[#5c779c]">
+                <span>Subtotal ({quantity} {quantity === 1 ? 'item' : 'items'})</span>
+                <span className="font-semibold text-[#0c1d43]">{formatPrice(quantity)}</span>
+              </div>
+              <div className="flex items-center justify-between text-xs text-[#5c779c]">
+                <span>Shipping</span>
+                <span className="font-bold text-[#10b981]">FREE</span>
+              </div>
+              <div className="border-t border-[#f0f4fa] pt-2 flex items-baseline justify-between">
+                <span className="text-sm font-bold text-[#0c1d43]">Total</span>
+                <span className="font-display text-lg font-extrabold text-[#2454d8]">{formatPrice(quantity)}</span>
+              </div>
+
+              {/* WhatsApp Checkout Button */}
+              <button
+                type="button"
+                onClick={handleCheckout}
+                className="w-full flex items-center justify-center gap-2 rounded-full bg-[#25d366] hover:bg-[#20ba59] active:scale-[.98] py-3 px-4 text-sm font-bold text-white shadow-[0_6px_20px_rgba(37,211,102,.3)] transition-all cursor-pointer"
+              >
+                <MessageCircle size={18} />
+                <span>Order via WhatsApp</span>
+              </button>
+
+              <p className="text-center text-[11px] text-[#7890ad]">
+                Cash on delivery available · Verified on WhatsApp
+              </p>
+            </div>
+          </motion.aside>
         </div>
       )}
     </AnimatePresence>
