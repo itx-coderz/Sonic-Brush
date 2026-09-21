@@ -33,7 +33,7 @@ import lifestyleVideo from '@assets/1783936182946_wid_NmE1NGI0YjZlYTBmNDdlYjYwND
 import detailVideo from '@assets/1783936185762_wid_NmE1NGI0YjllYTBmNDdlYjYwNDcxOTdj_h264cmobile_1789988880941.mp4';
 
 const queryClient = new QueryClient();
-const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || 'INSERT NUMBER';
+const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '+923077339343';
 const SELLING_PRICE = 'PKR 25,000';
 const DELIVERY_OFFER = 'Delivery included — no additional charge';
 const colors = [
@@ -145,7 +145,7 @@ function VideoMedia({
   };
 
   return (
-    <div className={`relative isolate overflow-hidden rounded-[2rem] border border-[#b8c9e7] bg-[#0c1d43] ${large ? 'min-h-[400px] sm:min-h-[520px]' : 'min-h-[260px]'}`} data-testid={testId}>
+    <div className={`relative isolate overflow-hidden rounded-4xl border border-[#b8c9e7] bg-[#0c1d43] ${large ? 'min-h-100 sm:min-h-130' : 'min-h-65'}`} data-testid={testId}>
       <video
         ref={videoRef}
         src={src}
@@ -162,7 +162,7 @@ function VideoMedia({
         aria-label={title}
         className="absolute inset-0 size-full object-cover object-center"
       />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#07132f]/80 via-transparent to-[#123f8a]/20" />
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-[#07132f]/80 via-transparent to-[#123f8a]/20" />
       <div className="absolute inset-x-5 top-5 flex items-center justify-between text-[#f6fbff]">
         <span className="eyebrow drop-shadow-sm">{label}</span>
         <span className="rounded-full border border-white/35 bg-[#0a1a3d]/45 px-3 py-1 text-[.62rem] font-bold uppercase tracking-[.12em] backdrop-blur-sm">Product video</span>
@@ -208,9 +208,9 @@ function Home() {
   };
 
   return (
-    <main id="top" className="page-grain min-h-[100dvh] bg-[#fbfcff] pb-24">
+    <main id="top" className="page-grain min-h-dvh bg-[#fbfcff] pb-24">
       <header className="sticky top-0 z-20 border-b border-[#dbe5f5]/80 bg-[#fbfcff]/90 backdrop-blur-xl">
-        <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
+        <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
           <Wordmark />
           <nav className="hidden items-center gap-7 md:flex" aria-label="Primary navigation">
             <button data-testid="link-how-it-works" onClick={() => jumpTo('how-it-works')} className="text-sm font-semibold text-[#53698d] hover:text-[#2454d8]">How it works</button>
@@ -270,7 +270,7 @@ function Home() {
       <section id="demo" className="mx-auto max-w-7xl scroll-mt-24 px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionIntro kicker="The product, in focus" title="See the Sonic Brush® V5 in action." body="Designed around a full-mouth brushing experience with sonic vibrations and a wrap-around mouthpiece." />
-          <span className="max-w-[13rem] text-sm font-semibold leading-6 text-[#5d6f8b]">A supplied demonstration video showing the product in use.</span>
+          <span className="max-w-52 text-sm font-semibold leading-6 text-[#5d6f8b]">A supplied demonstration video showing the product in use.</span>
         </div>
         <div className="mt-10">
           <VideoMedia src={demoVideo} poster={whiteProductImage} label="Video 02 / 30-second brushing demonstration" title="Notice the wrap-around mouthpiece and one-press routine." large testId="media-30-second-demonstration" />
@@ -292,7 +292,7 @@ function Home() {
             ].map(([number, title, body]) => (
               <div key={number} className="border-b border-[#35528c] py-8 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0">
                 <span className="font-mono text-sm text-[#75d9ef]">{number}</span>
-                <h3 className="mt-10 font-display text-3xl font-extrabold tracking-[-.05em]">{title}</h3>
+                <h3 className="mt-10 font-display text-3xl font-extrabold tracking-tighter">{title}</h3>
                 <p className="mt-3 max-w-xs text-sm leading-6 text-[#c9d8f0]">{body}</p>
               </div>
             ))}
@@ -311,7 +311,7 @@ function Home() {
           ].map(({ icon: Icon, no, title, body }) => (
             <article key={no} data-testid={`card-feature-${no}`} className="group rounded-[1.6rem] border border-[#cfddf2] bg-[#f4f8ff] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#91afe9] hover:bg-[#eef4ff]">
               <div className="flex items-center justify-between"><span className="font-mono text-xs text-[#7188ae]">{no}</span><Icon size={22} strokeWidth={1.7} className="text-[#2454d8]" /></div>
-              <h3 className="mt-16 font-display text-2xl font-extrabold capitalize tracking-[-.05em] text-[#10244c]">{title}</h3>
+              <h3 className="mt-16 font-display text-2xl font-extrabold capitalize tracking-tighter text-[#10244c]">{title}</h3>
               <p className="mt-3 text-sm leading-6 text-[#5d6f8b]">{body}</p>
             </article>
           ))}
@@ -367,7 +367,7 @@ function Home() {
               ['02', 'Product experience', 'Sample layout only. Add seller-provided review text here; no customer claim is being made yet.'],
               ['03', 'Everyday use', 'Demo content — this slot is ready for an attributed, verified customer review.'],
             ].map(([number, title, body]) => (
-              <article key={number} data-testid={`card-review-${number}`} className="flex min-h-56 flex-col justify-between rounded-[1.5rem] border border-[#b7dce8] bg-white/85 p-6 shadow-[0_14px_34px_rgba(30,99,128,.08)]">
+              <article key={number} data-testid={`card-review-${number}`} className="flex min-h-56 flex-col justify-between rounded-3xl border border-[#b7dce8] bg-white/85 p-6 shadow-[0_14px_34px_rgba(30,99,128,.08)]">
                 <div className="flex items-center justify-between"><span className="font-mono text-xs text-[#4b9bb3]">REVIEW SLOT {number}</span><span className="rounded-full bg-[#e6f7fb] px-2.5 py-1 text-[.6rem] font-bold uppercase tracking-[.12em] text-[#17627e]">Demo</span></div>
                 <div>
                   <h3 className="font-display text-xl font-extrabold tracking-[-.04em] text-[#123d63]">{title}</h3>
@@ -391,11 +391,11 @@ function Home() {
             </div>
           </div>
           <div className="space-y-4">
-            <div className="overflow-hidden rounded-[2rem] border border-[#c2d5ef] bg-white">
+            <div className="overflow-hidden rounded-4xl border border-[#c2d5ef] bg-white">
               <img src={whiteProductImage} alt="White Sonic Brush V5 product and blue package" loading="lazy" className="aspect-square w-full object-cover" />
               <p className="border-t border-[#dbe7f6] px-5 py-4 text-xs font-semibold text-[#536985]">The supplied package visual shown in White.</p>
             </div>
-            <div className="rounded-[2rem] bg-[#0c1d43] p-7 text-[#f6fbff] sm:p-10">
+            <div className="rounded-4xl bg-[#0c1d43] p-7 text-[#f6fbff] sm:p-10">
               <BatteryCharging size={25} className="text-[#28c7e7]" />
               <p className="eyebrow mt-16 text-[#a7c9ff]">Rechargeable convenience</p>
               <p className="mt-3 font-display text-5xl font-extrabold tracking-[-.08em]">Up to 30</p>
@@ -413,14 +413,14 @@ function Home() {
         </div>
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {colors.map((color) => (
-            <button key={color.name} data-testid={`button-color-${color.name.toLowerCase()}`} onClick={() => setSelectedColor(color.name)} style={{ backgroundColor: color.tint }} className={`group relative min-h-44 overflow-hidden rounded-[1.5rem] border p-3 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2454d8] ${selectedColor === color.name ? 'border-[#2454d8] ring-2 ring-[#2454d8]/25' : 'border-[#cbd8ed] hover:border-[#6c9ce8]'}`}>
+            <button key={color.name} data-testid={`button-color-${color.name.toLowerCase()}`} onClick={() => setSelectedColor(color.name)} style={{ backgroundColor: color.tint }} className={`group relative min-h-44 overflow-hidden rounded-3xl border p-3 text-left transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2454d8] ${selectedColor === color.name ? 'border-[#2454d8] ring-2 ring-[#2454d8]/25' : 'border-[#cbd8ed] hover:border-[#6c9ce8]'}`}>
               <span className="absolute right-4 top-4 z-10 grid size-6 place-items-center rounded-full border border-[#9eb5d9] bg-white/60">{selectedColor === color.name && <Check size={14} className="text-[#2454d8]" />}</span>
               <img src={color.image} alt={`${color.name} Sonic Brush V5 product and package`} loading="lazy" className="mx-auto block h-32 w-full object-contain transition-transform group-hover:scale-[1.04]" />
               <span className="mt-1 block text-sm font-bold text-[#10244c]">{color.name}</span>
             </button>
           ))}
         </div>
-         <div className="mt-8 flex flex-col gap-4 rounded-[1.5rem] border border-[#b9d8ec] bg-[#eef8fc] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+         <div className="mt-8 flex flex-col gap-4 rounded-3xl border border-[#b9d8ec] bg-[#eef8fc] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
            <div><p className="font-display text-lg font-extrabold text-[#10244c]">Ready for {selectedColor}?</p><p className="mt-1 text-sm text-[#5d6f8b]">{SELLING_PRICE} per unit · {DELIVERY_OFFER}</p></div>
           <Button testId="button-selected-color-order" onClick={() => whatsappMessage(orderMessage(selectedColor))}>Order this color <ArrowUpRight size={16} /></Button>
         </div>
@@ -476,22 +476,22 @@ function Home() {
                 ['city', 'City', 'Your city', 'text'],
               ].map(([name, label, placeholder, type]) => (
                 <label key={name} className="block">
-                  <span className="mb-2 block text-xs font-bold uppercase tracking-[.1em] text-[#5d7770]">{label}</span>
+                  <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#5d7770]">{label}</span>
                   <input required name={name} type={type} placeholder={placeholder} data-testid={`input-${name}`} className="h-12 w-full rounded-xl border border-[#c9d7ec] bg-white px-3.5 text-sm text-[#10244c] outline-none placeholder:text-[#93a4bd] focus:border-[#2454d8] focus:ring-2 focus:ring-[#b9cbed]" />
                 </label>
               ))}
               <label className="block">
-                <span className="mb-2 block text-xs font-bold uppercase tracking-[.1em] text-[#5d7770]">Selected color</span>
+                <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#5d7770]">Selected color</span>
                 <select name="color" defaultValue={selectedColor} key={selectedColor} data-testid="select-color" className="h-12 w-full rounded-xl border border-[#c9d7ec] bg-white px-3.5 text-sm text-[#10244c] outline-none focus:border-[#2454d8]">
                   {colors.map((color) => <option key={color.name}>{color.name}</option>)}
                 </select>
               </label>
               <label className="block sm:col-span-2">
-                <span className="mb-2 block text-xs font-bold uppercase tracking-[.1em] text-[#5d7770]">Complete delivery address</span>
+                <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#5d7770]">Complete delivery address</span>
                 <textarea required name="address" placeholder="Street, building, area" data-testid="input-address" className="min-h-24 w-full resize-y rounded-xl border border-[#c9d7ec] bg-white px-3.5 py-3 text-sm text-[#10244c] outline-none placeholder:text-[#93a4bd] focus:border-[#2454d8] focus:ring-2 focus:ring-[#b9cbed]" />
               </label>
               <label className="block">
-                <span className="mb-2 block text-xs font-bold uppercase tracking-[.1em] text-[#5d7770]">Quantity</span>
+                <span className="mb-2 block text-xs font-bold uppercase tracking-widest text-[#5d7770]">Quantity</span>
                 <input required min="1" max="10" defaultValue="1" name="quantity" type="number" data-testid="input-quantity" className="h-12 w-full rounded-xl border border-[#c9d7ec] bg-white px-3.5 text-sm text-[#10244c] outline-none focus:border-[#2454d8] focus:ring-2 focus:ring-[#b9cbed]" />
               </label>
             </div>
@@ -503,7 +503,7 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
-          <div className="rounded-[2rem] border border-[#cbdcf2] bg-[#f3f7ff] p-7 sm:p-10">
+          <div className="rounded-4xl border border-[#cbdcf2] bg-[#f3f7ff] p-7 sm:p-10">
           <SectionIntro kicker="Trust, without the fine print theatre" title="Simple. Clear. Transparent." />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {['Product information clearly displayed', 'Manual order confirmation', 'Payment verified before order confirmation', 'WhatsApp customer support'].map((point) => (
